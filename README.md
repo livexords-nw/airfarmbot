@@ -6,6 +6,9 @@ versi saat ini v 1.11.1
 
 ## Update v 1.9.1 -> v 1.11.1
 1. Menambahkan 2 Bot baru `babydoge` dan `ageofmars`
+2. Menghapus 2 bot di list bot yang bisa dijalankan dengan AIRFARMBOT
+ - ChickenPatrol bot ini sudah tidak aktif terbukti dengan akun botnya telah terhapus
+ - Tomarket bot saya sarankan tidak menggunakan bot ini karena tomarket sebentar lagi lounching dikhawatirkan akun terkena suspend maupun banned
 
 
 ## Fitur
@@ -32,28 +35,26 @@ Tool ini ditulis menggunakan bahasa **Rust**.
 ## Bot yang dijalankan AIRFARMBOT
 
 1. Gems Wall
-2. Chicken Patrol
-3. Tomarket
-4. Blum 
-5. Etherdrop
-6. Pumpad
-7. Wonton
-8. Yescoin
-9. Agent301
-10. Bird 
-11. Fintopia
-12. Hi Pin
-13. Dawn Validator `[Non Tele]`
-14. Get Grass `[Non Tele]`
-15. Banana
-16. Hashcat
-17. Bump
-18. Matchquest
-19. Fastmin
-20. To The Moon
-21. cyberfinance
-22. babydoge
-23. ageofmars
+2. Blum 
+3. Etherdrop
+4. Pumpad
+5. Wonton
+6. Yescoin
+7. Agent301
+8. Bird 
+9. Fintopia
+10. Hi Pin
+11. Dawn Validator `[Non Tele]`
+12. Get Grass `[Non Tele]`
+13. Banana
+14. Hashcat
+15. Bump
+16. Matchquest
+17. Fastmin
+18. To The Moon
+19. cyberfinance
+20. babydoge
+21. ageofmars
 
 ## Kontributor
 Script ini dibuat oleh **livexords**
