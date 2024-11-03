@@ -2,10 +2,10 @@
 **airfarmbot-termux-edition** adalah tool untuk menjalankan bot Airdrop di Termux, dengan pengelolaan sesi otomatis menggunakan `tmux`. Tool ini memastikan bot tetap berjalan, dan jika sesi `tmux` terputus, bot akan membuat sesi baru dan menjalankannya kembali (script harus di run ulang)
 
 ## Versi
-versi saat ini v 1.9.1
+versi saat ini v 1.11.1
 
-## Update v 1.8.1 -> v 1.9.1
-1. Menambahkan 1 Bot baru `cyberfinance-claimer`
+## Update v 1.9.1 -> v 1.11.1
+1. Menambahkan 2 Bot baru `babydoge` dan `ageofmars`
 
 
 ## Fitur
@@ -51,7 +51,9 @@ Tool ini ditulis menggunakan bahasa **Rust**.
 18. Matchquest
 19. Fastmin
 20. To The Moon
-21. cyberfinance-claimer
+21. cyberfinance
+22. babydoge
+23. ageofmars
 
 ## Kontributor
 Script ini dibuat oleh **livexords**

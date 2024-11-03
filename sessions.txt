@@ -17,3 +17,5 @@ matchquest-claimer,/data/data/com.termux/files/home/matchquest-claimer,python bo
 FastmintBOT,/data/data/com.termux/files/home/FastmintBOT,python bot.py,
 tothemoon,/data/data/com.termux/files/home/tothemoon,python bot.py,
 cyberfinance-claimer,/data/data/com.termux/files/home/cyberfinance-claimer,python bot-proxy.py,
+babydoge-claimer,/data/data/com.termux/files/home/babydoge-claimer,python bot-proxy.py,
+ageofmars-claimer,/data/data/com.termux/files/home/ageofmars-claimer,python bot-proxy.py
