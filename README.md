@@ -7,6 +7,7 @@ versi saat ini v 1.9.1
 ## Update v 1.8.1 -> v 1.9.1
 1. Menambahkan 1 Bot baru `cyberfinance-claimer`
 
+
 ## Fitur
 - **Pengecekan Sesi Otomatis**: Mendukung deteksi otomatis apakah sesi `tmux` bot sedang aktif atau tidak. Jika tidak aktif, bot akan membuat sesi baru dan menjalankannya.
   
@@ -50,6 +51,7 @@ Tool ini ditulis menggunakan bahasa **Rust**.
 18. Matchquest
 19. Fastmin
 20. To The Moon
+21. cyberfinance-claimer
 
 ## Kontributor
 Script ini dibuat oleh **livexords**
