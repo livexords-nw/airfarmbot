@@ -24,7 +24,8 @@ fn main() {
         ("hashcats-claimer", "/data/data/com.termux/files/home/hashcats-claimer", "python bot-proxy.py"),
         ("bump-claimer", "/data/data/com.termux/files/home/bump-claimer", "python bot-proxy.txt"),
         ("matchquest-claimer", "/data/data/com.termux/files/home/matchquest-claimer", "python bot-proxy.py"),
-        ("FastmintBOT", "/data/data/com.termux/files/home/FastmintBOT", "python bot.py")
+        ("FastmintBOT", "/data/data/com.termux/files/home/FastmintBOT", "python bot.py"),
+        ("tothemoon", "/data/data/com.termux/files/home/tothemoon", "python bot.py")
     ];
 
     for (session_name, directory, command) in sessions {
@@ -77,7 +78,7 @@ fn main() {
             }
         }
     }
-    
+
     let ls_output = Command::new("tmux")
         .arg("ls")
         .output()
