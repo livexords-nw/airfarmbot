@@ -3,7 +3,7 @@
 
 ## Versi
 versi saat ini v 1.8.1
-
+s
 ## Update v 1.6.1 -> v 1.8.1
 1. Sekarang kamu bisa menambahkan path jauh lebih mudah dengan sessions.txt
     **Example**
