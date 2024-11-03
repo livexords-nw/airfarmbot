@@ -22,7 +22,7 @@ Tool ini ditulis menggunakan bahasa **Rust**.
     ```bash
     ./botstart
 
-## Bot Run By AIRFARMBOT
+## Bot yang dijalankan AIRFARMBOT
 
 1. Gems Wall
 2. Chicken Patrol
