@@ -1,79 +1,81 @@
+use std::fs::File;
+use std::io::{self, BufRead};
+use std::path::Path;
 use std::process::Command;
 use std::env;
-use std::path::Path;
 
-fn main() {
-    let _ = Command::new("termux-wake-lock").output();
+// Function to read sessions from sessions.txt
+fn read_sessions(file_path: &str) -> Vec<(String, String, String)> {
+    let mut sessions = Vec::new();
+    if let Ok(lines) = read_lines(file_path) {
+        for line in lines {
+            if let Ok(record) = line {
+                let parts: Vec<&str> = record.split(',').map(|s| s.trim()).collect();
+                if parts.len() == 3 {
+                    sessions.push((
+                        parts[0].to_string(),
+                        parts[1].to_string(),
+                        parts[2].to_string(),
+                    ));
+                }
+            }
+        }
+    }
+    sessions
+}
 
-    let sessions = vec![
-        ("agent301-claimer", "/data/data/com.termux/files/home/agent301-claimer", "python bot.py"),
-        ("BirdxBOT", "/data/data/com.termux/files/home/BirdxBOT", "python bot.py"),
-        ("BlumBOT", "/data/data/com.termux/files/home/BlumBOT", "python blum.py"),
-        ("ChickenPatrolBOT", "/data/data/com.termux/files/home/ChickenPatrolBOT", "python bot.py"),
-        ("Dawn-Validator-bot", "/data/data/com.termux/files/home/Dawn-Validator-bot", "node index.js"),
-        ("EtherdropBOT", "/data/data/com.termux/files/home/EtherdropBOT", "python bot.py"),
-        ("FintopioBot", "/data/data/com.termux/files/home/FintopioBot", "python fintopio.py"),
-        ("GemswallBOT", "/data/data/com.termux/files/home/GemswallBOT", "python bot.py"),
-        ("pin-ai", "/data/data/com.termux/files/home/pin-ai", "node index.js"),
-        ("PumpadBOT", "/data/data/com.termux/files/home/PumpadBOT", "python bot.py"),
-        // ("TomarketBot", "/data/data/com.termux/files/home/TomarketBot", "python main.py"),
-        ("WontonBOT", "/data/data/com.termux/files/home/WontonBOT", "python bot.py"),
-        ("YescoinBOT", "/data/data/com.termux/files/home/YescoinBOT", "python bot.py"),
-        ("grass-bot", "/data/data/com.termux/files/home/grass-bot", "python main.py"),
-        ("BananaBOT", "/data/data/com.termux/files/home/BananaBOT", "python main.py"),
-        ("hashcats-claimer", "/data/data/com.termux/files/home/hashcats-claimer", "python bot-proxy.py"),
-        ("bump-claimer", "/data/data/com.termux/files/home/bump-claimer", "python bot-proxy.txt"),
-        ("matchquest-claimer", "/data/data/com.termux/files/home/matchquest-claimer", "python bot-proxy.py"),
-        ("FastmintBOT", "/data/data/com.termux/files/home/FastmintBOT", "python bot.py"),
-        ("tothemoon", "/data/data/com.termux/files/home/tothemoon", "python bot.py")
-    ];
+// Helper function to read lines from a file
+fn read_lines<P>(filename: P) -> io::Result<io::Lines<io::BufReader<File>>>
+where
+    P: AsRef<Path>,
+{
+    let file = File::open(filename)?;
+    Ok(io::BufReader::new(file).lines())
+}
 
+// Function to handle session creation and management
+fn manage_sessions(sessions: Vec<(String, String, String)>) {
     for (session_name, directory, command) in sessions {
-        if let Err(e) = env::set_current_dir(Path::new(directory)) {
-            eprintln!("Failed to change directory to '{}': {}", directory, e);
+        if let Err(e) = env::set_current_dir(Path::new(&directory)) {
+            eprintln!("\x1b[31mFailed to change directory to '{}': {}\x1b[0m", directory, e);
             continue;
         }
 
         let check_session = Command::new("tmux")
             .arg("has-session")
             .arg("-t")
-            .arg(session_name)
+            .arg(&session_name)
             .output();
 
         if let Ok(output) = check_session {
             if output.status.success() {
-                println!("Session '{}' exists.", session_name);
+                println!("\x1b[32mSession '{}' exists.\x1b[0m", session_name);
             } else {
-                eprintln!(
-                    "Error checking session '{}': {}",
-                    session_name,
-                    String::from_utf8_lossy(&output.stderr)
-                );
-                println!("Creating session for: {}", session_name);
+                println!("\x1b[33mCreating session for: {}\x1b[0m", session_name);
 
                 let create_session = Command::new("tmux")
                     .arg("new-session")
                     .arg("-d")
                     .arg("-s")
-                    .arg(session_name)
+                    .arg(&session_name)
                     .arg("sh")
                     .arg("-c")
-                    .arg(command)
+                    .arg(&command)
                     .output();
 
                 match create_session {
                     Ok(create_output) => {
                         if !create_output.stderr.is_empty() {
                             eprintln!(
-                                "Error creating session '{}': {}",
+                                "\x1b[31mError creating session '{}': {}\x1b[0m",
                                 session_name,
                                 String::from_utf8_lossy(&create_output.stderr)
                             );
                         } else {
-                            println!("Session '{}' created successfully.", session_name);
+                            println!("\x1b[32mSession '{}' created successfully.\x1b[0m", session_name);
                         }
                     }
-                    Err(e) => eprintln!("Failed to create session '{}': {}", session_name, e),
+                    Err(e) => eprintln!("\x1b[31mFailed to create session '{}': {}\x1b[0m", session_name, e),
                 }
             }
         }
@@ -84,5 +86,13 @@ fn main() {
         .output()
         .expect("Failed to list tmux sessions");
 
-    println!("Current tmux sessions:\n{}", String::from_utf8_lossy(&ls_output.stdout));
+    println!("\x1b[34mCurrent tmux sessions:\x1b[0m\n{}", String::from_utf8_lossy(&ls_output.stdout));
+}
+
+fn main() {
+    let _ = Command::new("termux-wake-lock").output();
+
+    // Read sessions from external file
+    let sessions = read_sessions("sessions.txt");
+    manage_sessions(sessions);
 }

@@ -2,10 +2,16 @@
 **airfarmbot-termux-edition** adalah tool untuk menjalankan bot Airdrop di Termux, dengan pengelolaan sesi otomatis menggunakan `tmux`. Tool ini memastikan bot tetap berjalan, dan jika sesi `tmux` terputus, bot akan membuat sesi baru dan menjalankannya kembali (script harus di run ulang)
 
 ## Versi
-versi saat ini v 1.6.1
+versi saat ini v 1.8.1
 
-## Update v 1.3.1 -> v 1.6.1
-1. Penambahan 2 bot **Fastmint** dan **To The Moon**
+## Update v 1.6.1 -> v 1.8.1
+1. Sekarang kamu bisa menambahkan path jauh lebih mudah dengan sessions.txt
+    **Example**
+    ```bash
+    agent301-claimer,/data/data/com.termux/files/home/agent301-claimer,python bot.py,
+    BirdxBOT,/data/data/com.termux/files/home/BirdxBOT,python bot.py,
+    BlumBOT,/data/data/com.termux/files/home/BlumBOT,python blum.py,
+2. Penambahan warna untuk setiap respon
 
 ## Fitur
 - **Pengecekan Sesi Otomatis**: Mendukung deteksi otomatis apakah sesi `tmux` bot sedang aktif atau tidak. Jika tidak aktif, bot akan membuat sesi baru dan menjalankannya.
