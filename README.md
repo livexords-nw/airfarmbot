@@ -1,6 +1,12 @@
 # airfarmbot-termux-edition
 **airfarmbot-termux-edition** adalah tool untuk menjalankan bot Airdrop di Termux, dengan pengelolaan sesi otomatis menggunakan `tmux`. Tool ini memastikan bot tetap berjalan, dan jika sesi `tmux` terputus, bot akan membuat sesi baru dan menjalankannya kembali (script harus di run ulang)
 
+## Versi
+versi saat ini v 1.6.1
+
+## Update v 1.3.1 -> v 1.6.1
+1. Penambahan 2 bot **Fastmint** dan **To The Moon**
+
 ## Fitur
 - **Pengecekan Sesi Otomatis**: Mendukung deteksi otomatis apakah sesi `tmux` bot sedang aktif atau tidak. Jika tidak aktif, bot akan membuat sesi baru dan menjalankannya.
   
@@ -36,8 +42,8 @@ Tool ini ditulis menggunakan bahasa **Rust**.
 10. Bird 
 11. Fintopia
 12. Hi Pin
-13. Dawn Validator [Non Tele]
-14. Get Grass [Non Tele]
+13. Dawn Validator `[Non Tele]`
+14. Get Grass `[Non Tele]`
 15. Banana
 16. Hashcat
 17. Bump
