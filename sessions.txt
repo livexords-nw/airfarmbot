@@ -19,4 +19,4 @@ cyberfinance-claimer,/data/data/com.termux/files/home/cyberfinance-claimer,pytho
 babydoge-claimer,/data/data/com.termux/files/home/babydoge-claimer,python bot-proxy.py
 ageofmars-claimer,/data/data/com.termux/files/home/ageofmars-claimer,python bot-proxy.py
 To-The-Moon-Bot,/data/data/com.termux/files/home/To-The-Moon-Bot,python bot.py
-Rewardshq-bot,/data/data/com.termux/files/home/Rewardshq-bot,python bot.py
+Rewardshq-bot,/data/data/com.termux/files/home/Rewardshq-bot,python main.py
