@@ -15,7 +15,8 @@ hashcats-claimer,/data/data/com.termux/files/home/hashcats-claimer,python bot-pr
 bump-claimer,/data/data/com.termux/files/home/bump-claimer,python bot-proxy.py
 matchquest-claimer,/data/data/com.termux/files/home/matchquest-claimer,python bot-proxy.py
 FastmintBOT,/data/data/com.termux/files/home/FastmintBOT,python bot.py
-To-The-Moon-Bot,/data/data/com.termux/files/home/To-The-Moon-Bot,python bot.py
 cyberfinance-claimer,/data/data/com.termux/files/home/cyberfinance-claimer,python bot-proxy.py
 babydoge-claimer,/data/data/com.termux/files/home/babydoge-claimer,python bot-proxy.py
 ageofmars-claimer,/data/data/com.termux/files/home/ageofmars-claimer,python bot-proxy.py
+To-The-Moon-Bot,/data/data/com.termux/files/home/To-The-Moon-Bot,python bot.py
+Rewardshq-bot,/data/data/com.termux/files/home/Rewardshq-bot,python bot.py

@@ -2,11 +2,10 @@
 **airfarmbot-termux-edition** adalah tool untuk menjalankan bot Airdrop di Termux, dengan pengelolaan sesi otomatis menggunakan `tmux`. Tool ini memastikan bot tetap berjalan, dan jika sesi `tmux` terputus, bot akan membuat sesi baru dan menjalankannya kembali (script harus di run ulang)
 
 ## Versi
-versi saat ini v 1.12.3
+versi saat ini v 1.13.3
 
-## Update v 1.11.2 -> v 1.12.3
-1. Membenahi Beberapa tampilan dan pemilihan warna
-2. Menambahkan Time Stamp 
+## Update v 1.12.3 -> v 1.13.3
+1. Menambahkan `Rewardshq-bot`
 
 ## Fitur
 - **Pengecekan Sesi Otomatis**: Mendukung deteksi otomatis apakah sesi `tmux` bot sedang aktif atau tidak. Jika tidak aktif, bot akan membuat sesi baru dan menjalankannya.
