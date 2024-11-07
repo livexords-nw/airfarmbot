@@ -51,6 +51,7 @@ Tool ini ditulis menggunakan bahasa **Rust**.
 19. cyberfinance
 20. babydoge
 21. ageofmars
+22. Rewardshq
 
 ## Kontributor
 Script ini dibuat oleh **livexords**
