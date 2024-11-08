@@ -20,3 +20,4 @@ babydoge-claimer,/data/data/com.termux/files/home/babydoge-claimer,python bot-pr
 ageofmars-claimer,/data/data/com.termux/files/home/ageofmars-claimer,python bot-proxy.py
 To-The-Moon-Bot,/data/data/com.termux/files/home/To-The-Moon-Bot,python bot.py
 Rewardshq-bot,/data/data/com.termux/files/home/Rewardshq-bot,python main.py
+Memes-war-bot,/data/data/com.termux/files/home/Memes-war-bot,node index.js
