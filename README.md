@@ -56,3 +56,4 @@ Tool ini ditulis menggunakan bahasa **Rust**.
 
 ## Kontributor
 Script ini dibuat oleh **livexords**
+Telegram: t.me/livexordsscript
