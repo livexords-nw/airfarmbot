@@ -1,59 +1,115 @@
-# airfarmbot-termux-edition
-**airfarmbot-termux-edition** adalah tool untuk menjalankan bot Airdrop di Termux, dengan pengelolaan sesi otomatis menggunakan `tmux`. Tool ini memastikan bot tetap berjalan, dan jika sesi `tmux` terputus, bot akan membuat sesi baru dan menjalankannya kembali (script harus di run ulang)
+Berikut versi revisi dari **README.md** untuk menjadikannya lebih jelas, detail, dan profesional:
+
+---
+
+# Airfarmbot Termux Edition
+**Airfarmbot Termux Edition** adalah sebuah tool yang dirancang untuk menjalankan bot airdrop secara otomatis di Termux dengan pengelolaan sesi menggunakan `tmux`. Tool ini memastikan bot tetap aktif, bahkan jika sesi `tmux` terputus. Dalam versi terbaru, tool ini mendukung fitur auto-run untuk memantau dan menjalankan kembali bot secara otomatis tanpa perlu menjalankan ulang script secara manual.
+
+---
 
 ## Versi
-versi saat ini v 1.14.3
+**Versi Saat Ini**: `v2.14.3`
 
-## Update v 1.13.3 -> v 1.14.3
-1. Menambahkan `Memes-war`
+---
 
-## Fitur
-- **Pengecekan Sesi Otomatis**: Mendukung deteksi otomatis apakah sesi `tmux` bot sedang aktif atau tidak. Jika tidak aktif, bot akan membuat sesi baru dan menjalankannya.
-  
+## Perubahan dari v1.14.3 ke v2.14.3
+1. **Auto-Run**:  
+   - Ditambahkan fitur auto-run yang memungkinkan bot berjalan otomatis setiap beberapa menit sekali sesuai pengaturan.
+   - Konfigurasi auto-run dapat dilakukan melalui file `config_bot.json`.
+
+2. **Update Repositori Otomatis**:  
+   - Bot kini dapat secara otomatis melakukan `git pull` untuk memperbarui kode repositori sebelum menjalankan sesi.
+
+---
+
+## Fitur Utama
+- **Auto-Run dengan Delay**:  
+  Bot dapat dijalankan secara otomatis dengan jeda waktu tertentu untuk memastikan sesi tetap aktif tanpa intervensi manual.
+
+- **Update Otomatis untuk Repositori Bot**:  
+  Secara otomatis memperbarui kode repositori bot dengan menggunakan `git pull`, memastikan bot berjalan dengan versi terbaru.
+
+---
+
 ## Bahasa Pemrograman
-Tool ini ditulis menggunakan bahasa **Rust**.
+Tool ini ditulis menggunakan bahasa **Rust**, yang dikenal untuk performanya yang cepat dan efisien.
+
+---
 
 ## Cara Install di Termux
 
-1. Clone repositori:
-   ```bash
-   git clone https://github.com/livexords-nw/airfarmbot-termux-edition.git
-2. Masuk kedalam direktori proyek:
-    ```bash
-    cd airfarmbot-termux-edition
-3. Kompilasi file rust
-    ```bash
-    rustc bot.rs -o botstart
-4. Jalankan bot:
-    ```bash
-    ./botstart
+Ikuti langkah-langkah berikut untuk menginstal dan menjalankan **Airfarmbot Termux Edition**:
 
-## Bot yang dijalankan AIRFARMBOT
+### 1. Persiapan Awal
+Pastikan Anda telah menginstal **tmux**, **git**, dan **Rust** di Termux:
+```bash
+pkg install tmux git rust
+```
 
-1. Gems Wall
-2. Blum 
-3. Etherdrop
-4. Pumpad
-5. Wonton
-6. Yescoin
-7. Agent301
-8. Bird 
-9. Fintopia
-10. Hi Pin
-11. Dawn Validator `[Non Tele]`
-12. Get Grass `[Non Tele]`
-13. Banana
-14. Hashcat
-15. Bump
-16. Matchquest
-17. Fastmin
-18. To The Moon
-19. cyberfinance
-20. babydoge
-21. ageofmars
-22. Rewardshq
-23. Memes-war
+### 2. Clone Repositori
+Unduh kode sumber dengan perintah:
+```bash
+git clone https://github.com/livexords-nw/airfarmbot-termux-edition.git
+```
+
+### 3. Masuk ke Direktori Proyek
+Pindah ke direktori proyek:
+```bash
+cd airfarmbot-termux-edition
+```
+
+### 4. Kompilasi File Rust
+Kompilasi script Rust untuk menghasilkan file eksekusi:
+```bash
+rustc bot.rs -o botstart
+```
+
+### 5. Jalankan Bot
+Jalankan bot dengan perintah:
+```bash
+./botstart
+```
+
+---
+
+## Konfigurasi
+Semua pengaturan bot dapat dilakukan melalui file `config_bot.json`. Berikut adalah contoh isi file konfigurasi:
+
+```json
+{
+    "update_repos": true,
+    "auto_run": true,
+    "delay_minutes": 5
+}
+```
+
+- **`update_repos`**:  
+  Jika disetel ke `true`, bot akan secara otomatis melakukan pembaruan kode repositori sebelum menjalankan sesi.
+
+- **`auto_run`**:  
+  Mengaktifkan fitur auto-run. Jika diatur ke `true`, bot akan terus memantau dan menjalankan sesi sesuai interval yang ditentukan.
+
+- **`delay_minutes`**:  
+  Mengatur interval waktu dalam menit untuk fitur auto-run.
+
+---
+
+## Contoh `sessions.txt`
+File `sessions.txt` digunakan untuk mendefinisikan daftar bot yang akan dijalankan. Format file:
+```
+nama_sesi,direktori,perintah
+```
+
+Contoh:
+```
+bot1,/home/user/bot1,python3 bot.py
+bot2,/home/user/bot2,python3 bot.py
+```
+
+---
 
 ## Kontributor
-Script ini dibuat oleh **livexords**
-Telegram: t.me/livexordsscript
+Script ini dikembangkan oleh **livexords**.  
+- Telegram: [@livexordsscript](https://t.me/livexordsscript)
+
+---
