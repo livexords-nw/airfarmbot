@@ -1,7 +1,3 @@
-Berikut versi revisi dari **README.md** untuk menjadikannya lebih jelas, detail, dan profesional:
-
----
-
 # Airfarmbot Termux Edition
 **Airfarmbot Termux Edition** adalah sebuah tool yang dirancang untuk menjalankan bot airdrop secara otomatis di Termux dengan pengelolaan sesi menggunakan `tmux`. Tool ini memastikan bot tetap aktif, bahkan jika sesi `tmux` terputus. Dalam versi terbaru, tool ini mendukung fitur auto-run untuk memantau dan menjalankan kembali bot secara otomatis tanpa perlu menjalankan ulang script secara manual.
 
