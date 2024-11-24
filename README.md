@@ -1,5 +1,3 @@
-Berikut versi revisi dari **README.md** untuk menjadikannya lebih jelas, detail, dan profesional:
-
 ---
 
 # Airfarmbot Termux Edition
