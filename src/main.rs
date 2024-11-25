@@ -49,42 +49,47 @@ where
     Ok(io::BufReader::new(file).lines())
 }
 
-// Fungsi untuk menjalankan auto git pull
-fn auto_git_pull(sessions: &[(String, String, String)]) {
-    for (_, folder, _) in sessions {
-        if let Err(e) = env::set_current_dir(folder) {
-            eprintln!(
-                "{} \x1b[91m[ERROR]\x1b[0m Failed to change directory to '{}': {}",
-                get_timestamp(),
-                folder,
-                e
-            );
-            continue;
-        }
+// Function to perform git pull
+fn auto_git_pull(sessions: &Vec<(String, String, String)>, update_repos: bool) {
+    if !update_repos {
+        println!("{} \x1b[93m[INFO]\x1b[0m Skipping Git updates as per configuration.", get_timestamp());
+        return;
+    }
 
-        let pull_output = Command::new("git").arg("pull").output();
+    for (_, directory, _) in sessions {
+        println!(
+            "{} \x1b[94m[INFO]\x1b[0m Updating repository in '{}'.",
+            get_timestamp(),
+            directory
+        );
+
+        let pull_output = Command::new("git")
+            .arg("-C")
+            .arg(&directory)
+            .arg("pull")
+            .output();
 
         match pull_output {
             Ok(output) => {
-                if !output.stderr.is_empty() {
-                    eprintln!(
-                        "{} \x1b[91m[ERROR]\x1b[0m Failed to git pull in '{}': {}",
+                if output.status.success() {
+                    println!(
+                        "{} \x1b[92m[INFO]\x1b[0m Git repository in '{}' updated successfully.",
                         get_timestamp(),
-                        folder,
-                        String::from_utf8_lossy(&output.stderr)
+                        directory
                     );
                 } else {
-                    println!(
-                        "{} \x1b[92m[INFO]\x1b[0m Successfully updated repo in '{}'.",
+                    eprintln!(
+                        "{} \x1b[91m[ERROR]\x1b[0m Failed to update Git repository in '{}': {}",
                         get_timestamp(),
-                        folder
+                        directory,
+                        String::from_utf8_lossy(&output.stderr)
                     );
                 }
             }
             Err(e) => eprintln!(
-                "{} \x1b[91m[ERROR]\x1b[0m Failed to execute git pull in '{}': {}",
+                "{} \x1b[91m[ERROR]\x1b[0m Error running git pull in '{}': {}",
                 get_timestamp(),
-                folder,
+                directory,
                 e
             ),
         }
@@ -169,28 +174,35 @@ fn manage_sessions(sessions: &[(String, String, String)]) {
 }
 
 fn main() {
-    let config = read_config("config_bot.json");
+    let _ = Command::new("termux-wake-lock").output();
+
+    // Load configuration from config_bot.json
+    let config = load_config("config_bot.json");
+
+    // Read sessions from sessions.txt
     let sessions = read_sessions("sessions.txt");
 
-    if config.update_repos {
-        println!("{} \x1b[94m[INFO]\x1b[0m Running auto git pull...", get_timestamp());
-        auto_git_pull(&sessions);
-    }
+    // Perform Git pull once at the start
+    auto_git_pull(&sessions, config.update_repos);
 
+    // Main loop
     loop {
-        println!("{} \x1b[94m[INFO]\x1b[0m Managing bot sessions...", get_timestamp());
-        manage_sessions(&sessions);
-
-        if !config.auto_run {
+        if config.auto_run {
+            manage_sessions(sessions.clone());
+        } else {
+            println!(
+                "{} \x1b[93m[INFO]\x1b[0m Auto-run is disabled. Exiting.",
+                get_timestamp()
+            );
             break;
         }
 
-        let delay = time::Duration::from_secs(config.delay_minutes * 60);
         println!(
-            "{} \x1b[94m[INFO]\x1b[0m Waiting for {} minutes before next run...",
+            "{} \x1b[94m[INFO]\x1b[0m Sleeping for {} minutes.",
             get_timestamp(),
             config.delay_minutes
         );
-        thread::sleep(delay);
+        std::thread::sleep(std::time::Duration::from_secs(config.delay_minutes * 60));
     }
 }
+
