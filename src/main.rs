@@ -176,19 +176,19 @@ fn manage_sessions(sessions: &[(String, String, String)]) {
 fn main() {
     let _ = Command::new("termux-wake-lock").output();
 
-    // Load configuration from config_bot.json
-    let config = load_config("config_bot.json");
+    // Load konfigurasi dari config_bot.json
+    let config = read_config("config_bot.json");
 
-    // Read sessions from sessions.txt
+    // Membaca sesi dari sessions.txt
     let sessions = read_sessions("sessions.txt");
 
-    // Perform Git pull once at the start
+    // Lakukan git pull sekali di awal
     auto_git_pull(&sessions, config.update_repos);
 
     // Main loop
     loop {
         if config.auto_run {
-            manage_sessions(sessions.clone());
+            manage_sessions(&sessions); // Kirim referensi ke slice
         } else {
             println!(
                 "{} \x1b[93m[INFO]\x1b[0m Auto-run is disabled. Exiting.",
