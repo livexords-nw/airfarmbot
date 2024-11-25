@@ -1,10 +1,10 @@
 use chrono::Local;
 use serde::Deserialize;
 use std::fs::File;
-use std::io::{self, BufRead, Write};
+use std::io::{self, BufRead};
 use std::path::Path;
 use std::process::Command;
-use std::{env, thread, time};
+use std::env;
 
 // Struct untuk membaca file konfigurasi
 #[derive(Deserialize)]
