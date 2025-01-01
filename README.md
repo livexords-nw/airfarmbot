@@ -2,73 +2,77 @@
 
 <h1 align="center">Airfarmbot Termux Edition</h1>  
 
-<p align="center">Otomatisasi bot airdrop di Termux dengan sesi yang dikelola menggunakan tmux!</p>  
+<p align="center">Automate your airdrop bot in Termux with session management powered by tmux!</p>  
 
 ---
 
-## 🚀 **Tentang Airfarmbot Termux Edition**
+## 🚀 **About Airfarmbot Termux Edition**  
 
-**Airfarmbot Termux Edition** adalah tool yang dirancang untuk menjalankan bot airdrop secara otomatis di Termux dengan pengelolaan sesi menggunakan `tmux`. Tool ini memastikan bot tetap aktif, bahkan jika sesi `tmux` terputus.  
+**Airfarmbot Termux Edition** is a tool designed to automate airdrop bots in Termux while utilizing `tmux` for session management. This tool ensures that the bot remains active, even if the `tmux` session disconnects.  
 
-Fitur terbaru menambahkan **logger yang lebih jelas**, memungkinkan Anda memantau proses, update repositori, dan eksekusi perintah secara lebih detail.  
-
----
-
-## 🌟 **Versi v2.14.4**  
-
-### **Pembaruan pada Versi Ini**:  
-
-1. **Logger Lebih Jelas**:  
-   - Ditambahkan peningkatan pada logger untuk menampilkan detail aktivitas bot.  
-   - Proses update, eksekusi perintah, dan error log kini tampil lebih informatif.  
+The latest version introduces **a more user-friendly experience** and **enhanced logger details** for better monitoring, efficiency, and streamlined bot execution.  
 
 ---
 
-## ⚙️ **Fitur Utama**  
+## 🌟 **Version v2.14.5**  
 
-1. **Auto-Run dengan Delay**  
-   Bot dapat dijalankan otomatis dengan jeda waktu tertentu untuk memastikan sesi tetap aktif.  
+### **What's New in This Version**  
 
-2. **Update Repositori Otomatis**  
-   Secara otomatis memperbarui kode repositori bot menggunakan `git pull`.  
+1. **Enhanced Logger Details**  
+   - Improved activity logs for better clarity on bot processes.  
+   - Logs now display updates, command executions, and error handling with detailed information.  
 
-3. **Logger yang Lebih Informatif**  
-   Log kini lebih mudah dipantau dengan detail aktivitas, eksekusi perintah, dan error handling.  
+2. **More User-Friendly and Efficient**  
+   - Optimized bot operations for easier usage.  
+   - Enhanced performance to handle multiple sessions seamlessly.  
 
 ---
 
-## 📥 **Cara Install di Termux**  
+## ⚙️ **Key Features**  
 
-### 1. **Persiapan Awal**  
-Pastikan **tmux**, **git**, dan **Rust** sudah terinstal:  
+1. **Auto-Run with Delay**  
+   Automatically execute bots with a specified time delay to keep sessions active.  
+
+2. **Automatic Repository Updates**  
+   Ensures that the bot's code is always up-to-date using `git pull`.  
+
+3. **Detailed Logging**  
+   Provides clear and concise logs for activity tracking, command execution, and error monitoring.  
+
+---
+
+## 📥 **Installation Guide in Termux**  
+
+### 1. **Initial Setup**  
+Ensure `tmux`, `git`, and `Rust` are installed:  
 
 ```bash
 pkg install tmux git rust
 ```  
 
-### 2. **Clone Repository**  
-Unduh kode proyek dengan perintah:  
+### 2. **Clone the Repository**  
+Download the project code with the following command:  
 
 ```bash
 git clone https://github.com/livexords-nw/airfarmbot-termux-edition.git
 ```  
 
-### 3. **Masuk ke Direktori Proyek**  
-Pindah ke direktori proyek:  
+### 3. **Navigate to the Project Directory**  
+Move into the project folder:  
 
 ```bash
 cd airfarmbot-termux-edition
 ```  
 
-### 4. **Compile Proyek**  
-Gunakan perintah berikut untuk meng-compile proyek:  
+### 4. **Compile the Project**  
+Build the project using:  
 
 ```bash
 cargo build
 ```  
 
-### 5. **Jalankan Bot**  
-Eksekusi bot dengan perintah:  
+### 5. **Run the Bot**  
+Execute the bot with:  
 
 ```bash
 cargo run
@@ -76,9 +80,9 @@ cargo run
 
 ---
 
-## 🔧 **Konfigurasi di `config_bot.json`**  
+## 🔧 **Configuration in `config_bot.json`**  
 
-Berikut contoh konfigurasi bot:  
+Example configuration:  
 
 ```json
 {
@@ -88,21 +92,21 @@ Berikut contoh konfigurasi bot:
 }
 ```  
 
-- **`update_repos`**: Memperbarui repositori bot secara otomatis.  
-- **`auto_run`**: Mengaktifkan fitur auto-run.  
-- **`delay_minutes`**: Jeda waktu antar eksekusi auto-run dalam menit.  
+- **`update_repos`**: Enables automatic repository updates.  
+- **`auto_run`**: Enables auto-run feature.  
+- **`delay_minutes`**: Time delay between each auto-run in minutes.  
 
 ---
 
-## 📂 **Format File `sessions.txt`**  
+## 📂 **Format for `sessions.txt` File**  
 
-`Sessions.txt` digunakan untuk mendefinisikan daftar sesi bot:  
+Define bot sessions in `sessions.txt` with the following format:  
 
 ```
-nama_sesi,direktori,perintah
+session_name,directory,command
 ```  
 
-Contoh:  
+Example:  
 ```
 bot1,/home/user/bot1,python3 bot.py
 bot2,/home/user/bot2,python3 bot.py
@@ -110,19 +114,24 @@ bot2,/home/user/bot2,python3 bot.py
 
 ---
 
-## 📄 **Log Aktivitas Bot**  
+## 📄 **Bot Activity Logging**  
 
-Logger akan menampilkan aktivitas seperti berikut:  
-- **[INFO]** Memulai update repositori...  
-- **[SUCCESS]** Repositori berhasil diperbarui.  
-- **[RUNNING]** Menjalankan sesi `bot1`.  
-- **[ERROR]** Gagal menjalankan sesi `bot2`: *File tidak ditemukan.*  
-
----
-
-## 🤝 **Kontributor**  
-
-Script ini dikembangkan oleh **livexords**.  
-- [![Telegram](https://img.shields.io/badge/Telegram-2CA5E0?style=flat&logo=telegram&logoColor=white)](https://t.me/livexordsscript)  
+The logger provides detailed information such as:  
+- **[INFO]** Starting repository update...  
+- **[SUCCESS]** Repository updated successfully.  
+- **[RUNNING]** Executing session `bot1`.  
+- **[ERROR]** Failed to execute session `bot2`: *File not found.*  
 
 ---
+
+## 🤝 **Contributors**  
+
+This script is developed by **livexords**. For suggestions, questions, or contributions, feel free to reach out:  
+
+<div align="center">
+  <a href="https://t.me/livexordsscript" target="_blank">
+    <img src="https://img.shields.io/static/v1?message=Livexords&logo=telegram&label=&color=2CA5E0&logoColor=white&labelColor=&style=for-the-badge" height="25" alt="telegram logo" />
+  </a>
+</div>  
+
+---  

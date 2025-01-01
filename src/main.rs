@@ -14,13 +14,13 @@ struct Config {
 }
 
 fn log(message: &str, color: &str) {
-    let timestamp = Local::now().format("[%Y-%m-%d %H:%M:%S] ~").to_string();
+    let timestamp = Local::now().format("[%Y-%m-%d ~ %H:%M:%S] ~").to_string();
     println!("\x1b[90m{}\x1b[0m {}{}", timestamp, color, message);
 }
 
 fn read_config(file_path: &str) -> Config {
-    let file = File::open(file_path).expect("Failed to open config file");
-    serde_json::from_reader(file).expect("Failed to parse config file")
+    let file = File::open(file_path).expect("❌ Failed to open config file");
+    serde_json::from_reader(file).expect("❌ Failed to parse config file")
 }
 
 fn read_sessions(file_path: &str) -> Vec<(String, String, String)> {
@@ -52,13 +52,13 @@ where
 
 fn auto_git_pull(sessions: &Vec<(String, String, String)>, update_repos: bool) {
     if !update_repos {
-        log("[INFO] Skipping Git updates as per configuration.", "\x1b[93m");
+        log("[INFO] 🛑 Skipping Git updates as per configuration.", "\x1b[93m");
         return;
     }
 
     for (_, directory, _) in sessions {
         log(
-            &format!("[INFO] Updating repository in '{}'.", directory),
+            &format!("[INFO] 📂 Updating repository in '{}'.", directory),
             "\x1b[94m",
         );
 
@@ -72,7 +72,7 @@ fn auto_git_pull(sessions: &Vec<(String, String, String)>, update_repos: bool) {
             Ok(output) => {
                 if output.status.success() {
                     log(
-                        &format!("[INFO] Git repository in '{}' updated successfully.", directory),
+                        &format!("[INFO] ✅ Git repository in '{}' updated successfully.", directory),
                         "\x1b[92m",
                     );
                     log(
@@ -81,7 +81,7 @@ fn auto_git_pull(sessions: &Vec<(String, String, String)>, update_repos: bool) {
                     );
                 } else {
                     log(
-                        &format!("[ERROR] Failed to update Git repository in '{}'.", directory),
+                        &format!("[ERROR] ❌ Failed to update Git repository in '{}'.", directory),
                         "\x1b[91m",
                     );
                     log(
@@ -91,7 +91,7 @@ fn auto_git_pull(sessions: &Vec<(String, String, String)>, update_repos: bool) {
                 }
             }
             Err(e) => log(
-                &format!("[ERROR] Error running git pull in '{}': {}", directory, e),
+                &format!("[ERROR] ❌ Error running git pull in '{}': {}", directory, e),
                 "\x1b[91m",
             ),
         }
@@ -102,7 +102,7 @@ fn manage_sessions(sessions: &[(String, String, String)]) {
     for (session_name, directory, command) in sessions {
         if let Err(e) = env::set_current_dir(Path::new(&directory)) {
             log(
-                &format!("[ERROR] Failed to change directory to '{}': {}", directory, e),
+                &format!("[ERROR] ❌ Failed to change directory to '{}': {}", directory, e),
                 "\x1b[91m",
             );
             continue;
@@ -117,12 +117,12 @@ fn manage_sessions(sessions: &[(String, String, String)]) {
         if let Ok(output) = check_session {
             if output.status.success() {
                 log(
-                    &format!("[INFO] Session '{}' is already running.", session_name),
+                    &format!("[INFO] 🟢 Session '{}' is already running.", session_name),
                     "\x1b[92m",
                 );
             } else {
                 log(
-                    &format!("[WARNING] Creating new session for: '{}'", session_name),
+                    &format!("[INFO] 🟡 Starting session: '{}'", session_name),
                     "\x1b[93m",
                 );
 
@@ -141,7 +141,7 @@ fn manage_sessions(sessions: &[(String, String, String)]) {
                         if !create_output.stderr.is_empty() {
                             log(
                                 &format!(
-                                    "[ERROR] Failed to create session '{}': {}",
+                                    "[ERROR] ❌ Failed to create session '{}': {}",
                                     session_name,
                                     String::from_utf8_lossy(&create_output.stderr)
                                 ),
@@ -149,13 +149,13 @@ fn manage_sessions(sessions: &[(String, String, String)]) {
                             );
                         } else {
                             log(
-                                &format!("[INFO] Session '{}' created successfully.", session_name),
+                                &format!("[INFO] ✅ Session '{}' created successfully.", session_name),
                                 "\x1b[92m",
                             );
                         }
                     }
                     Err(e) => log(
-                        &format!("[ERROR] Failed to create session '{}': {}", session_name, e),
+                        &format!("[ERROR] ❌ Failed to create session '{}': {}", session_name, e),
                         "\x1b[91m",
                     ),
                 }
@@ -177,12 +177,12 @@ fn main() {
         if config.auto_run {
             manage_sessions(&sessions);
         } else {
-            log("[INFO] Auto-run is disabled. Exiting.", "\x1b[93m");
+            log("[INFO] 🔒 Auto-run is disabled. Exiting.", "\x1b[93m");
             break;
         }
 
         log(
-            &format!("[INFO] Sleeping for {} minutes.", config.delay_minutes),
+            &format!("[INFO] 💤 Sleeping for {} minutes.", config.delay_minutes),
             "\x1b[94m",
         );
         std::thread::sleep(std::time::Duration::from_secs(config.delay_minutes * 60));
