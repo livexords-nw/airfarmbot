@@ -1,137 +1,186 @@
 ---
 
-<h1 align="center">Airfarmbot Termux Edition</h1>  
+<h1 align="center">Airfarmbot Termux Edition</h1>
 
-<p align="center">Automate your airdrop bot in Termux with session management powered by tmux!</p>  
-
----
-
-## 🚀 **About Airfarmbot Termux Edition**  
-
-**Airfarmbot Termux Edition** is a tool designed to automate airdrop bots in Termux while utilizing `tmux` for session management. This tool ensures that the bot remains active, even if the `tmux` session disconnects.  
-
-The latest version introduces **a more user-friendly experience** and **enhanced logger details** for better monitoring, efficiency, and streamlined bot execution.  
+<p align="center">Automate your airdrop bot in Termux with session management powered by tmux!</p>
 
 ---
 
-## 🌟 **Version v2.14.5**  
+## 🚀 About Airfarmbot Termux Edition
 
-### **What's New in This Version**  
-
-1. **Enhanced Logger Details**  
-   - Improved activity logs for better clarity on bot processes.  
-   - Logs now display updates, command executions, and error handling with detailed information.  
-
-2. **More User-Friendly and Efficient**  
-   - Optimized bot operations for easier usage.  
-   - Enhanced performance to handle multiple sessions seamlessly.  
+**Airfarmbot Termux Edition** is a tool designed to automate airdrop bots in Termux with built-in session management using tmux. It ensures that your bots remain active and up-to-date even if tmux sessions disconnect. This version has been updated to run on Node.js, making installation and usage simpler for JavaScript developers. The tool also features a user-friendly interface with enhanced logging (using colors and emojis).
 
 ---
 
-## ⚙️ **Key Features**  
+## 🌟 Version v2.15.0
 
-1. **Auto-Run with Delay**  
-   Automatically execute bots with a specified time delay to keep sessions active.  
+### What's New in This Version
 
-2. **Automatic Repository Updates**  
-   Ensures that the bot's code is always up-to-date using `git pull`.  
+- **Node.js Implementation:**  
+  The project is now fully implemented in Node.js instead of Rust.
 
-3. **Detailed Logging**  
-   Provides clear and concise logs for activity tracking, command execution, and error monitoring.  
+  - Installation instructions have been updated accordingly.
+  - Run the bot using Node commands instead of cargo.
+
+- **Improved User-Friendly Logging:**  
+  Logs now include detailed status messages with color and emojis for better clarity and monitoring.
+
+- **Enhanced Auto Query System:**
+
+  - Automatically manages Telegram sessions.
+  - Extracts raw query data from the URL fragment (after `tgWebAppData=`) without decoding.
+  - Saves output to specified files (clearing output only for the first account per bot).
+
+- **Repository Updates & TMUX Management:**  
+  The tool automatically updates repositories using `git pull` and manages tmux sessions (if Termux mode is enabled).
 
 ---
 
-## 📥 **Installation Guide in Termux**  
+## ⚙️ Key Features
 
-### 1. **Initial Setup**  
-Ensure `tmux`, `git`, and `Rust` are installed:  
+- **Auto-Run with Delay:**  
+  Automatically run your bots at specified time intervals to keep sessions active.
 
-```bash
-pkg install tmux git rust
-```  
+- **Automatic Repository Updates:**  
+  Keeps your bot's code up-to-date using `git pull`.
 
-### 2. **Clone the Repository**  
-Download the project code with the following command:  
+- **Detailed, User-Friendly Logging:**  
+  Color-coded logs with emojis provide clear and concise status updates and error messages.
+
+- **Telegram Session Management:**  
+  Automatically manages Telegram sessions for multiple accounts by storing session files locally.
+
+- **Raw Query Extraction:**  
+  Sends a RequestWebView to your bot’s dApp URL and extracts the raw query data from the URL fragment (the portion after `tgWebAppData=`).
+
+---
+
+## 📥 Installation Guide (Node.js)
+
+### 1. Initial Setup
+
+Ensure that you have [Node.js](https://nodejs.org/) and `git` installed.
+
+### 2. Clone the Repository
+
+Download the project code with the following command:
 
 ```bash
 git clone https://github.com/livexords-nw/airfarmbot-termux-edition.git
-```  
+```
 
-### 3. **Navigate to the Project Directory**  
-Move into the project folder:  
+### 3. Navigate to the Project Directory
+
+Move into the project folder:
 
 ```bash
 cd airfarmbot-termux-edition
-```  
+```
 
-### 4. **Compile the Project**  
-Build the project using:  
+### 4. Install Dependencies
 
-```bash
-cargo build
-```  
-
-### 5. **Run the Bot**  
-Execute the bot with:  
+Since this project is now implemented in Node.js, install the required Node modules using:
 
 ```bash
-cargo run
-```  
+npm install telegram
+```
+
+_(Only the `telegram` package is required as other modules are built-in.)_
+
+### 5. Run the Bot
+
+Execute your script with:
+
+```bash
+node main.js
+```
 
 ---
 
-## 🔧 **Configuration in `config_bot.json`**  
+## 🔧 Configuration in `config_bot.json`
 
-Example configuration:  
+Example configuration:
 
 ```json
 {
-    "update_repos": true,
-    "auto_run": true,
-    "delay_minutes": 5
+  "update_repos": true,
+  "auto_run": true,
+  "delay_minutes": 5,
+  "auto_query": true,
+  "termux": true
 }
-```  
+```
 
-- **`update_repos`**: Enables automatic repository updates.  
-- **`auto_run`**: Enables auto-run feature.  
-- **`delay_minutes`**: Time delay between each auto-run in minutes.  
+- **`update_repos`**: Enables automatic repository updates.
+- **`auto_run`**: Enables the auto-run feature.
+- **`delay_minutes`**: Time delay (in minutes) between each auto-run.
+- **`auto_query`**: Enables the auto query system.
+- **`termux`**: Set to `true` to enable Termux-specific features (like tmux session management); set to `false` to disable.
 
 ---
 
-## 📂 **Format for `sessions.txt` File**  
+## 📂 Format for `sessions.txt`
 
-Define bot sessions in `sessions.txt` with the following format:  
+Define bot sessions in `sessions.txt` with the following format:
 
 ```
 session_name,directory,command
-```  
+```
 
-Example:  
+Example:
+
 ```
 bot1,/home/user/bot1,python3 bot.py
 bot2,/home/user/bot2,python3 bot.py
-```  
+```
 
 ---
 
-## 📄 **Bot Activity Logging**  
+## 📄 Format for `account.txt` and `script_bot.txt`
 
-The logger provides detailed information such as:  
-- **[INFO]** Starting repository update...  
-- **[SUCCESS]** Repository updated successfully.  
-- **[RUNNING]** Executing session `bot1`.  
-- **[ERROR]** Failed to execute session `bot2`: *File not found.*  
+- **`account.txt`**  
+  Each line should follow this format:
+
+  ```
+  phone, @BotUsername|dapp_url, @BotUsername|dapp_url, ...
+  ```
+
+  Example:
+
+  ```
+  +6212345456, @RewardsHQ_bot|https://rewardshq.shards.tech/?start=5438209644, @OtherBot|https://otherdapp.example.com
+  ```
+
+- **`script_bot.txt`**  
+  Each line maps a bot username to an output file:
+
+  ```
+  @BotUsername,C:\Users\YourName\Documents\airfarmbot\RewardsHQ\query.txt
+  ```
 
 ---
 
-## 🤝 **Contributors**  
+## 📄 Bot Activity Logging
 
-This script is developed by **livexords**. For suggestions, questions, or contributions, feel free to reach out:  
+The logger outputs detailed messages such as:
+
+- **🛑**: Skipping Git updates as per configuration.
+- **✅**: Repository updated successfully.
+- **🟢**: Session is already running.
+- **❌**: Errors with descriptive messages.
+- **🚀**: Starting the Auto Query System.
+- **😴**: Sleeping between auto-run cycles.
+
+---
+
+## 🤝 Contributors
+
+This project is developed by **livexords**. For suggestions, questions, or contributions, feel free to reach out:
 
 <div align="center">
   <a href="https://t.me/livexordsscript" target="_blank">
-    <img src="https://img.shields.io/static/v1?message=Livexords&logo=telegram&label=&color=2CA5E0&logoColor=white&labelColor=&style=for-the-badge" height="25" alt="telegram logo" />
+    <img src="https://img.shields.io/static/v1?message=Livexords&logo=telegram&label=&color=2CA5E0&logoColor=white&style=for-the-badge" height="25" alt="Telegram" />
   </a>
-</div>  
+</div>
 
----  
+---

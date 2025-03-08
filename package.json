@@ -1,0 +1,25 @@
+{
+  "name": "airfarmbot-termux-edition",
+  "version": "1.0.0",
+  "description": "airfarmbot-termux-edition handle script bot",
+  "main": "main.js",
+  "scripts": {
+    "test": "npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/livexords-nw/airfarmbot-termux-edition.git"
+  },
+  "keywords": [
+    "livexords-nw"
+  ],
+  "author": "livexords-nw",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/livexords-nw/airfarmbot-termux-edition/issues"
+  },
+  "homepage": "https://github.com/livexords-nw/airfarmbot-termux-edition#readme",
+  "dependencies": {
+    "telegram": "^2.26.22"
+  }
+}
