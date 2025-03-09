@@ -8,27 +8,28 @@
 
 ## 🚀 About Airfarmbot Termux Edition
 
-**Airfarmbot Termux Edition** is a tool designed to automate airdrop bots in Termux with built-in session management using tmux. It ensures that your bots remain active and up-to-date even if tmux sessions disconnect. This version has been updated to run on Node.js, making installation and usage simpler for JavaScript developers. The tool also features a user-friendly interface with enhanced logging (using colors and emojis).
+**Airfarmbot Termux Edition** is a tool designed to automate airdrop bots in Termux with built‑in session management using tmux. It ensures that your bots remain active and up‑to‑date even if tmux sessions disconnect. This version has been updated to run on Node.js, making installation and usage simpler for JavaScript developers. The tool also features a user‑friendly interface with enhanced logging (using colors and emojis).
 
 ---
 
-## 🌟 Version v2.15.0
+## 🌟 Version v2.15.1
 
 ### What's New in This Version
 
+- **Output Query Improvement:**  
+  The way the query is extracted from the URL fragment (after `tgWebAppData=`) has been fixed. Now, the output query shows raw data with proper "=" characters rather than double-encoded values. This makes the query data more readable and useful for downstream processing.
+
 - **Node.js Implementation:**  
   The project is now fully implemented in Node.js instead of Rust.
-
-  - Installation instructions have been updated accordingly.
+  - Updated installation instructions.
   - Run the bot using Node commands instead of cargo.
 
 - **Improved User-Friendly Logging:**  
   Logs now include detailed status messages with color and emojis for better clarity and monitoring.
 
-- **Enhanced Auto Query System:**
-
+- **Enhanced Auto Query System:**  
   - Automatically manages Telegram sessions.
-  - Extracts raw query data from the URL fragment (after `tgWebAppData=`) without decoding.
+  - Extracts raw query data from the URL fragment without unwanted encoding.
   - Saves output to specified files (clearing output only for the first account per bot).
 
 - **Repository Updates & TMUX Management:**  
@@ -39,19 +40,19 @@
 ## ⚙️ Key Features
 
 - **Auto-Run with Delay:**  
-  Automatically run your bots at specified time intervals to keep sessions active.
+  Automatically run your bots at specified intervals to keep sessions active.
 
 - **Automatic Repository Updates:**  
-  Keeps your bot's code up-to-date using `git pull`.
+  Keeps your bot's code up‑to‑date using `git pull`.
 
 - **Detailed, User-Friendly Logging:**  
-  Color-coded logs with emojis provide clear and concise status updates and error messages.
+  Color‑coded logs with emojis provide clear and concise status updates and error messages.
 
 - **Telegram Session Management:**  
   Automatically manages Telegram sessions for multiple accounts by storing session files locally.
 
 - **Raw Query Extraction:**  
-  Sends a RequestWebView to your bot’s dApp URL and extracts the raw query data from the URL fragment (the portion after `tgWebAppData=`).
+  Sends a RequestWebView to your bot’s dApp URL and extracts the raw query data from the URL fragment (the portion after `tgWebAppData=`) with improved formatting.
 
 ---
 
@@ -85,7 +86,7 @@ Since this project is now implemented in Node.js, install the required Node modu
 npm install telegram
 ```
 
-_(Only the `telegram` package is required as other modules are built-in.)_
+*(Only the `telegram` package is required as other modules are built‑in.)*
 
 ### 5. Run the Bot
 
@@ -112,10 +113,10 @@ Example configuration:
 ```
 
 - **`update_repos`**: Enables automatic repository updates.
-- **`auto_run`**: Enables the auto-run feature.
-- **`delay_minutes`**: Time delay (in minutes) between each auto-run.
+- **`auto_run`**: Enables the auto‑run feature.
+- **`delay_minutes`**: Time delay (in minutes) between each auto‑run.
 - **`auto_query`**: Enables the auto query system.
-- **`termux`**: Set to `true` to enable Termux-specific features (like tmux session management); set to `false` to disable.
+- **`termux`**: Set to `true` to enable Termux‑specific features (like tmux session management); set to `false` to disable.
 
 ---
 
@@ -169,7 +170,7 @@ The logger outputs detailed messages such as:
 - **🟢**: Session is already running.
 - **❌**: Errors with descriptive messages.
 - **🚀**: Starting the Auto Query System.
-- **😴**: Sleeping between auto-run cycles.
+- **😴**: Sleeping between auto‑run cycles.
 
 ---
 
