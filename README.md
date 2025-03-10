@@ -12,28 +12,18 @@
 
 ---
 
-## 🌟 Version v2.15.1
+## 🌟 Version v2.15.2
 
 ### What's New in This Version
 
-- **Output Query Improvement:**  
-  The way the query is extracted from the URL fragment (after `tgWebAppData=`) has been fixed. Now, the output query shows raw data with proper "=" characters rather than double-encoded values. This makes the query data more readable and useful for downstream processing.
+- **Raw Query Option:**  
+  You can now add a `|raw` flag after the dApp URL in the `account.txt` file.
 
-- **Node.js Implementation:**  
-  The project is now fully implemented in Node.js instead of Rust.
-  - Updated installation instructions.
-  - Run the bot using Node commands instead of cargo.
+  - If the `|raw` flag is added, the query output will be returned as raw data (without decoding), preserving percent-encoding (except for a single level of decoding so that "=" appears properly).
+  - If no flag is provided, the query output will be decoded for better readability.
 
-- **Improved User-Friendly Logging:**  
-  Logs now include detailed status messages with color and emojis for better clarity and monitoring.
-
-- **Enhanced Auto Query System:**  
-  - Automatically manages Telegram sessions.
-  - Extracts raw query data from the URL fragment without unwanted encoding.
-  - Saves output to specified files (clearing output only for the first account per bot).
-
-- **Repository Updates & TMUX Management:**  
-  The tool automatically updates repositories using `git pull` and manages tmux sessions (if Termux mode is enabled).
+- **Improved TIMEOUT Error Handling:**  
+  Global error handlers now suppress TIMEOUT errors that occur during repository updates and tmux session management, preventing these errors from cluttering your logs.
 
 ---
 
@@ -52,7 +42,25 @@
   Automatically manages Telegram sessions for multiple accounts by storing session files locally.
 
 - **Raw Query Extraction:**  
-  Sends a RequestWebView to your bot’s dApp URL and extracts the raw query data from the URL fragment (the portion after `tgWebAppData=`) with improved formatting.
+  Sends a RequestWebView to your bot’s dApp URL and extracts the query data from the URL fragment (the portion after `tgWebAppData=`).  
+  If the `|raw` flag is specified in the account file, the query is output in raw format; otherwise, it is decoded for readability.
+
+---
+
+## ❗ Important Note
+
+For the Auto Query system to work correctly, the dApp URL **must include "startapp"** in its query string.  
+For example, the following URL will work:
+
+```
+https://t.me/RewardsHQ_bot/RewardsHQ?startapp=5438209644
+```
+
+However, a URL like the one below (using only `start`) will **not** be processed correctly:
+
+```
+https://t.me/otterlootbot?start=ref_6778b1d10091b8b33ebec9f9
+```
 
 ---
 
@@ -80,13 +88,13 @@ cd airfarmbot-termux-edition
 
 ### 4. Install Dependencies
 
-Since this project is now implemented in Node.js, install the required Node modules using:
+Since this project is now implemented in Node.js, install the required Node module using:
 
 ```bash
 npm install telegram
 ```
 
-*(Only the `telegram` package is required as other modules are built‑in.)*
+_(Only the `telegram` package is required, as other modules are built‑in.)_
 
 ### 5. Run the Bot
 
@@ -146,10 +154,16 @@ bot2,/home/user/bot2,python3 bot.py
   phone, @BotUsername|dapp_url, @BotUsername|dapp_url, ...
   ```
 
-  Example:
+  **Example:**
 
   ```
-  +6212345456, @RewardsHQ_bot|https://rewardshq.shards.tech/?start=5438209644, @OtherBot|https://otherdapp.example.com
+  +6212345456, @RewardsHQ_bot|https://rewardshq.shards.tech/?startapp=5438209644, @OtherBot|https://otherdapp.example.com
+  ```
+
+  _To output the raw query, add `|raw` after the dApp URL:_
+
+  ```
+  +6285847103494, @RewardsHQ_bot|https://t.me/RewardsHQ_bot/RewardsHQ?startapp=5438209644|raw
   ```
 
 - **`script_bot.txt`**  
