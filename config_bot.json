@@ -3,5 +3,9 @@
     "auto_run": true,
     "delay_minutes": 5,
     "auto_query": true,
-    "termux": true
+    "divace": {
+        "termux": true,
+        "linux": false,
+        "windows": false
+    }
 }

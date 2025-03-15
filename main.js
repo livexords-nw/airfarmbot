@@ -1,1 +1,455 @@
-'use strict';const a0_0x2fb9aa=a0_0x44a6;(function(_0x217f91,_0x4ae433){const _0x6fab49=a0_0x44a6,_0x56adb2=_0x217f91();while(!![]){try{const _0x5e7f38=parseInt(_0x6fab49(0x16c))/0x1+-parseInt(_0x6fab49(0x197))/0x2*(-parseInt(_0x6fab49(0x1ab))/0x3)+parseInt(_0x6fab49(0x19e))/0x4*(-parseInt(_0x6fab49(0x1bf))/0x5)+parseInt(_0x6fab49(0x16e))/0x6*(-parseInt(_0x6fab49(0x190))/0x7)+parseInt(_0x6fab49(0x1b9))/0x8*(parseInt(_0x6fab49(0x1ad))/0x9)+-parseInt(_0x6fab49(0x18d))/0xa+-parseInt(_0x6fab49(0x1a8))/0xb*(parseInt(_0x6fab49(0x198))/0xc);if(_0x5e7f38===_0x4ae433)break;else _0x56adb2['push'](_0x56adb2['shift']());}catch(_0x46657b){_0x56adb2['push'](_0x56adb2['shift']());}}}(a0_0x50ee,0x1dddd));function a0_0x44a6(_0x3490b1,_0x2f0f9c){const _0x50ee3d=a0_0x50ee();return a0_0x44a6=function(_0x44a66b,_0x351733){_0x44a66b=_0x44a66b-0x167;let _0x26904f=_0x50ee3d[_0x44a66b];return _0x26904f;},a0_0x44a6(_0x3490b1,_0x2f0f9c);}process['on'](a0_0x2fb9aa(0x188),_0x36d3c6=>{const _0x10564f=a0_0x2fb9aa;if(_0x36d3c6&&_0x36d3c6[_0x10564f(0x17f)]&&_0x36d3c6[_0x10564f(0x17f)][_0x10564f(0x1ac)](_0x10564f(0x1a9))){}else console[_0x10564f(0x19f)](_0x10564f(0x167),_0x36d3c6);}),process['on']('unhandledRejection',(_0x2709ef,_0x34affb)=>{const _0xda26e=a0_0x2fb9aa;if(_0x2709ef&&_0x2709ef['message']&&_0x2709ef[_0xda26e(0x17f)][_0xda26e(0x1ac)]('TIMEOUT')){}else console[_0xda26e(0x19f)]('Unhandled\x20Rejection:',_0x2709ef);});const fs=require('fs'),path=require('path'),readline=require(a0_0x2fb9aa(0x199)),{exec}=require('child_process'),{promisify}=require(a0_0x2fb9aa(0x16a)),execPromise=promisify(exec),{TelegramClient,Api}=require(a0_0x2fb9aa(0x168)),{StringSession}=require(a0_0x2fb9aa(0x1c9)),APP_ID=0x10e3ace,APP_HASH=a0_0x2fb9aa(0x179);function log(_0x254ce6,_0x3c54ed=''){const _0x1b878d=a0_0x2fb9aa,_0x264334=new Date()[_0x1b878d(0x1b5)]()['replace']('T',_0x1b878d(0x1c5))['split']('.')[0x0];console[_0x1b878d(0x1b1)](_0x1b878d(0x1a1)+_0x264334+_0x1b878d(0x1ca)+_0x3c54ed+_0x254ce6+_0x1b878d(0x19d));}function readConfig(_0xc74404){const _0x3c089f=a0_0x2fb9aa;return JSON[_0x3c089f(0x182)](fs[_0x3c089f(0x177)](_0xc74404,_0x3c089f(0x174)));}function readLines(_0x18e8d1){const _0x2e3f13=a0_0x2fb9aa;return fs[_0x2e3f13(0x177)](_0x18e8d1,_0x2e3f13(0x174))[_0x2e3f13(0x1d9)]('\x0a')[_0x2e3f13(0x192)](_0x19a340=>_0x19a340[_0x2e3f13(0x193)]()!=='');}function readSessions(_0x1cc5f3){const _0x480fb3=a0_0x2fb9aa,_0x1be4c3=[];for(const _0x3575e9 of readLines(_0x1cc5f3)){const _0x22612e=_0x3575e9[_0x480fb3(0x1d9)](',')[_0x480fb3(0x1b4)](_0x3dbc40=>_0x3dbc40[_0x480fb3(0x193)]());_0x22612e[_0x480fb3(0x1a6)]===0x3&&_0x1be4c3[_0x480fb3(0x1d5)]({'sessionName':_0x22612e[0x0],'directory':_0x22612e[0x1],'command':_0x22612e[0x2]});}return _0x1be4c3;}async function autoGitPull(_0x43bd17,_0x1d2eec){const _0x484d08=a0_0x2fb9aa;if(!_0x1d2eec){log(_0x484d08(0x1be),_0x484d08(0x1b3));return;}for(const {directory:_0x3f7073}of _0x43bd17){log('📂\x20Updating\x20repository\x20in\x20\x27'+_0x3f7073+'\x27.',_0x484d08(0x1c4));try{const {stdout:_0x43ccc5,stderr:_0x5849e9}=await execPromise(_0x484d08(0x19b)+_0x3f7073+'\x22\x20pull');_0x5849e9&&!_0x5849e9['includes'](_0x484d08(0x1a9))?log(_0x484d08(0x180)+_0x3f7073+_0x484d08(0x1a2)+_0x5849e9,'\x1b[91m'):(log(_0x484d08(0x1bb)+_0x3f7073+'\x27\x20updated\x20successfully.',_0x484d08(0x1d6)),log('📤\x20'+_0x43ccc5,_0x484d08(0x1c4)));}catch(_0x4f63b1){!_0x4f63b1[_0x484d08(0x17f)]['includes'](_0x484d08(0x1a9))&&log(_0x484d08(0x1af)+_0x3f7073+_0x484d08(0x1a2)+_0x4f63b1,_0x484d08(0x1c2));}}}async function manageSessions(_0x120edd){const _0x5412c9=a0_0x2fb9aa;for(const {sessionName:_0x1110ea,directory:_0x56f12f,command:_0x2bd196}of _0x120edd){try{process[_0x5412c9(0x1c0)](_0x56f12f);}catch(_0x534aae){log(_0x5412c9(0x1c6)+_0x56f12f+'\x27:\x20'+_0x534aae,_0x5412c9(0x1c2));continue;}try{await execPromise(_0x5412c9(0x187)+_0x1110ea),log(_0x5412c9(0x1c3)+_0x1110ea+_0x5412c9(0x1a4),_0x5412c9(0x1d6));}catch(_0x29a95e){log('🟡\x20Starting\x20session:\x20\x27'+_0x1110ea+'\x27',_0x5412c9(0x1b3));try{const {stderr:_0x3c69b8}=await execPromise('tmux\x20new-session\x20-d\x20-s\x20'+_0x1110ea+_0x5412c9(0x1b7)+_0x2bd196+'\x22');_0x3c69b8?log(_0x5412c9(0x16d)+_0x1110ea+_0x5412c9(0x1a2)+_0x3c69b8,_0x5412c9(0x1c2)):log('✅\x20Session\x20\x27'+_0x1110ea+_0x5412c9(0x1aa),_0x5412c9(0x1d6));}catch(_0xd6a5){log('❌\x20Failed\x20to\x20create\x20session\x20\x27'+_0x1110ea+_0x5412c9(0x1a2)+_0xd6a5,_0x5412c9(0x1c2));}}}}function readAccountFile(_0x2064af){const _0x26a502=a0_0x2fb9aa,_0x528681=[];for(const _0x5e53a of readLines(_0x2064af)){const _0x23f00a=_0x5e53a[_0x26a502(0x1d9)](',')[_0x26a502(0x1b4)](_0x505be8=>_0x505be8[_0x26a502(0x193)]());if(_0x23f00a[_0x26a502(0x1a6)]<0x2)continue;const _0x46d08f=_0x23f00a[0x0],_0xb7b51f=[];for(let _0x18df7d=0x1;_0x18df7d<_0x23f00a[_0x26a502(0x1a6)];_0x18df7d++){const _0x567ef1=_0x23f00a[_0x18df7d][_0x26a502(0x1d9)]('|')[_0x26a502(0x1b4)](_0x107b04=>_0x107b04['trim']());if(_0x567ef1[_0x26a502(0x1a6)]>=0x2){const _0x39feb0=_0x567ef1[0x0],_0x4ad569=_0x567ef1[0x1],_0x4c9743=_0x567ef1[_0x26a502(0x1a6)]>=0x3&&_0x567ef1[0x2][_0x26a502(0x183)]()===_0x26a502(0x191);_0xb7b51f['push']({'username':_0x39feb0,'dapp_url':_0x4ad569,'raw':_0x4c9743});}}_0x528681[_0x26a502(0x1d5)]({'phone':_0x46d08f,'queries':_0xb7b51f});}return _0x528681;}function readScriptFile(_0x357960){const _0x1d9719=a0_0x2fb9aa,_0xfc7b92={};for(const _0x50859a of readLines(_0x357960)){if(_0x50859a[_0x1d9719(0x1ac)](',')){const [_0x5f0ca8,_0x25eb89]=_0x50859a[_0x1d9719(0x1d9)](',',0x2);_0xfc7b92[_0x5f0ca8[_0x1d9719(0x193)]()]=_0x25eb89['trim']();}}return _0xfc7b92;}function sanitizePhone(_0x3c6342){return _0x3c6342['replace'](/\D/g,'');}function prompt(_0x30a093){const _0x2691d5=a0_0x2fb9aa,_0x50c56e=readline[_0x2691d5(0x181)]({'input':process[_0x2691d5(0x178)],'output':process[_0x2691d5(0x18b)]});return new Promise(_0x175ac1=>_0x50c56e[_0x2691d5(0x18a)](_0x30a093,_0x357b25=>{const _0x128021=_0x2691d5;_0x50c56e[_0x128021(0x1a7)](),_0x175ac1(_0x357b25['trim']());}));}function a0_0x50ee(){const _0x479d54=['257411zXpbEQ','TIMEOUT','\x27\x20created\x20successfully.','12507rIynbl','includes','25884EoIzZH','account.txt','❌\x20Error\x20running\x20git\x20pull\x20in\x20\x27','delay_minutes','log','script_bot.txt','\x1b[93m','map','toISOString','auto_query','\x20sh\x20-c\x20\x22','🛑\x20TMUX\x20session\x20management\x20disabled\x20since\x20Termux\x20mode\x20is\x20disabled.','584BbnXgZ','join','✅\x20Repository\x20in\x20\x27','username','💾\x20Query\x20for\x20','🛑\x20Skipping\x20Git\x20updates\x20as\x20per\x20configuration.','14125tdtgqo','chdir','termux-wake-lock','\x1b[91m','🟢\x20Session\x20\x27','\x1b[94m','\x20~\x20','❌\x20Failed\x20to\x20change\x20directory\x20to\x20\x27','RequestWebView','android','telegram/sessions',']\x1b[0m\x20','queries','invoke','bot','🚀\x20Running\x20Auto\x20Query\x20System...','session','indexOf','connect','\x20not\x20found.\x20Starting\x20login\x20process...','Query\x20not\x20found','Entity\x20is\x20a\x20channel\x20and\x20not\x20a\x20bot\x20user','push','\x1b[92m','❌\x20Request\x20query\x20failed\x20for\x20','\x20minutes...','split','Uncaught\x20Exception:','telegram','✅\x20Signed\x20in\x20as\x20','util','writeFileSync','186622wBPcly','❌\x20Failed\x20to\x20create\x20session\x20\x27','55098hktGlg','sessions','appendFileSync','disconnect','termux','🔑\x20Session\x20for\x20','utf8','existsSync','stringify','readFileSync','stdin','ecb718e2f356a062fce2bbd7af4ac76b','auto_run','getEntity','className',';\x20please\x20follow\x20the\x20ToS.','dapp_url','message','❌\x20Failed\x20to\x20update\x20repository\x20in\x20\x27','createInterface','parse','toLowerCase','sessions.txt','tgWebAppData=','config_bot.json','tmux\x20has-session\x20-t\x20','uncaughtException','⚠️\x20\x20Warning:\x20termux-wake-lock\x20failed:\x20','question','stdout','substring','1244100ViNNfi','🔐\x20Please\x20enter\x20your\x20password\x20(if\x20required):\x20','InputPeerChannel','98fvxVVq','raw','filter','trim','update_repos','📴\x20Termux\x20mode\x20disabled.','save','86GKNSrH','84UuIeYV','readline','Client\x20error:\x20','git\x20-C\x20\x22','mkdirSync','\x1b[0m','52fRdGgS','error','inputPeerChannel','\x1b[90m[','\x27:\x20','📝\x20Please\x20enter\x20the\x20code\x20you\x20received:\x20','\x27\x20is\x20already\x20running.','url','length','close'];a0_0x50ee=function(){return _0x479d54;};return a0_0x50ee();}async function loginForAccount(_0x188e3f){const _0x5a0629=a0_0x2fb9aa;log(_0x5a0629(0x173)+_0x188e3f+_0x5a0629(0x1d2),_0x5a0629(0x1b3));const _0x2ff395=new StringSession(''),_0x49ec30=new TelegramClient(_0x2ff395,APP_ID,APP_HASH,{'connectionRetries':0x5});await _0x49ec30['start']({'phoneNumber':()=>_0x188e3f,'phoneCode':()=>prompt(_0x5a0629(0x1a3)),'password':()=>prompt(_0x5a0629(0x18e)),'onError':_0x389e7d=>{console['error'](_0x389e7d);}}),log(_0x5a0629(0x169)+_0x49ec30[_0x5a0629(0x1cf)]['userId']+_0x5a0629(0x17d),_0x5a0629(0x1d6));const _0x21c287=_0x49ec30['session'][_0x5a0629(0x196)]();return await _0x49ec30[_0x5a0629(0x171)](),_0x21c287;}async function ensureSessionForAccount(_0x3c26ed){const _0x45a0fd=a0_0x2fb9aa,_0x2cfb24=sanitizePhone(_0x3c26ed),_0x1ea616=path[_0x45a0fd(0x1ba)](_0x45a0fd(0x168),_0x45a0fd(0x16f),_0x2cfb24),_0x2a4771=path[_0x45a0fd(0x1ba)](_0x1ea616,'session.txt');if(!fs[_0x45a0fd(0x175)](_0x2a4771)){fs[_0x45a0fd(0x19c)](_0x1ea616,{'recursive':!![]});const _0x541c45=await loginForAccount(_0x3c26ed);return fs[_0x45a0fd(0x16b)](_0x2a4771,_0x541c45,_0x45a0fd(0x174)),_0x541c45;}else return fs[_0x45a0fd(0x177)](_0x2a4771,'utf8');}async function requestQueryForAccount(_0x488019,_0x21ae24){const _0x317632=a0_0x2fb9aa;try{let _0x3974d7=await _0x488019['getInputEntity'](_0x21ae24[_0x317632(0x1bc)]);if(_0x3974d7[_0x317632(0x17c)]===_0x317632(0x1a0)||_0x3974d7['className']===_0x317632(0x18f)){const _0x5c0d05=await _0x488019[_0x317632(0x17b)](_0x21ae24['username']);if(_0x5c0d05[_0x317632(0x1cd)])_0x3974d7=new Api['InputPeerUser']({'userId':_0x5c0d05['id'],'accessHash':_0x5c0d05['accessHash']});else throw new Error(_0x317632(0x1d4));}const _0x3135a3=await _0x488019[_0x317632(0x1cc)](new Api['messages'][(_0x317632(0x1c7))]({'peer':_0x3974d7,'bot':_0x3974d7,'fromBotMenu':![],'url':_0x21ae24[_0x317632(0x17e)],'platform':_0x317632(0x1c8)}));log('📥\x20Response\x20for\x20'+_0x21ae24[_0x317632(0x1bc)]+':\x20'+JSON[_0x317632(0x176)](_0x3135a3),_0x317632(0x1c4));if(_0x3135a3[_0x317632(0x1a5)]){const _0x32c1a8=new URL(_0x3135a3[_0x317632(0x1a5)]),_0x94d22d=_0x32c1a8['hash'];if(_0x94d22d){const _0x2e9d51=_0x94d22d[_0x317632(0x18c)](0x1),_0x292350=_0x317632(0x185),_0x436f13=_0x2e9d51['indexOf'](_0x292350);if(_0x436f13!==-0x1){let _0x421ddd=_0x2e9d51[_0x317632(0x18c)](_0x436f13+_0x292350[_0x317632(0x1a6)]);const _0x28ec53=_0x421ddd[_0x317632(0x1d0)]('&');return _0x28ec53!==-0x1&&(_0x421ddd=_0x421ddd[_0x317632(0x18c)](0x0,_0x28ec53)),!_0x21ae24[_0x317632(0x191)]?decodeURIComponent(_0x421ddd):_0x421ddd;}}}return'Query\x20not\x20found';}catch(_0x30a71d){return log(_0x317632(0x1d7)+_0x21ae24[_0x317632(0x1bc)]+':\x20'+_0x30a71d,_0x317632(0x1c2)),_0x317632(0x1d3);}}async function autoQuerySystem(){const _0x12f17d=a0_0x2fb9aa,_0x46178e=readAccountFile(_0x12f17d(0x1ae)),_0xae547d=readScriptFile(_0x12f17d(0x1b2)),_0x539dbd={};for(const _0x1b7423 of _0x46178e){const _0x3484f2=await ensureSessionForAccount(_0x1b7423['phone']),_0x176159=new TelegramClient(new StringSession(_0x3484f2),APP_ID,APP_HASH,{'connectionRetries':0x5});await _0x176159[_0x12f17d(0x1d1)](),_0x176159['on'](_0x12f17d(0x19f),_0x5aa309=>{const _0x29ec30=_0x12f17d;!_0x5aa309[_0x29ec30(0x17f)][_0x29ec30(0x1ac)](_0x29ec30(0x1a9))&&log(_0x29ec30(0x19a)+_0x5aa309,_0x29ec30(0x1c2));});for(const _0x17a118 of _0x1b7423[_0x12f17d(0x1cb)]){const _0x2d5649=await requestQueryForAccount(_0x176159,_0x17a118);if(_0xae547d[_0x17a118[_0x12f17d(0x1bc)]]){const _0x5ba302=_0xae547d[_0x17a118[_0x12f17d(0x1bc)]];!_0x539dbd[_0x17a118[_0x12f17d(0x1bc)]]&&(fs[_0x12f17d(0x16b)](_0x5ba302,'',_0x12f17d(0x174)),_0x539dbd[_0x17a118[_0x12f17d(0x1bc)]]=!![]),fs[_0x12f17d(0x170)](_0x5ba302,_0x2d5649+'\x0a','utf8'),log(_0x12f17d(0x1bd)+_0x17a118[_0x12f17d(0x1bc)]+'\x20saved\x20to\x20'+_0x5ba302,_0x12f17d(0x1d6));}}await _0x176159[_0x12f17d(0x171)]();}}async function main(){const _0x11a3d1=a0_0x2fb9aa,_0x529b78=readConfig(_0x11a3d1(0x186));if(_0x529b78[_0x11a3d1(0x172)])try{await execPromise(_0x11a3d1(0x1c1));}catch(_0x3920ae){log(_0x11a3d1(0x189)+_0x3920ae,_0x11a3d1(0x1b3));}else log(_0x11a3d1(0x195),_0x11a3d1(0x1b3));_0x529b78[_0x11a3d1(0x1b6)]&&(log(_0x11a3d1(0x1ce),'\x1b[96m'),await autoQuerySystem(),log('✅\x20All\x20Telegram\x20connections\x20have\x20been\x20disconnected\x20after\x20auto\x20query.','\x1b[92m'));const _0x696f00=readSessions(_0x11a3d1(0x184));await autoGitPull(_0x696f00,_0x529b78[_0x11a3d1(0x194)]);if(_0x529b78['termux'])while(_0x529b78[_0x11a3d1(0x17a)]){await manageSessions(_0x696f00),log('😴\x20Sleeping\x20for\x20'+_0x529b78[_0x11a3d1(0x1b0)]+_0x11a3d1(0x1d8),_0x11a3d1(0x1c4)),await new Promise(_0x3f46b0=>setTimeout(_0x3f46b0,_0x529b78['delay_minutes']*0x3c*0x3e8));}else log(_0x11a3d1(0x1b8),_0x11a3d1(0x1b3));}main()['catch'](_0x28d941=>{const _0xdca135=a0_0x2fb9aa;log('❌\x20'+_0x28d941,_0xdca135(0x1c2));});
+/**
+ * Final User-Friendly Node.js Script for Auto Query, Repository, and TMUX Management
+ * APP_ID and APP_HASH are provided directly (plain text).
+ */
+
+"use strict";
+
+// Global error handlers to suppress TIMEOUT errors
+process.on("uncaughtException", (err) => {
+  if (err && err.message && err.message.includes("TIMEOUT")) {
+    // Ignore TIMEOUT errors
+  } else {
+    console.error("Uncaught Exception:", err);
+  }
+});
+
+process.on("unhandledRejection", (reason, promise) => {
+  if (reason && reason.message && reason.message.includes("TIMEOUT")) {
+    // Ignore TIMEOUT errors
+  } else {
+    console.error("Unhandled Rejection:", reason);
+  }
+});
+
+const fs = require("fs");
+const path = require("path");
+const readline = require("readline");
+const { exec } = require("child_process");
+const { promisify } = require("util");
+const execPromise = promisify(exec);
+
+const { TelegramClient, Api } = require("telegram");
+const { StringSession } = require("telegram/sessions");
+
+// =================== APP CREDENTIALS ===================
+const APP_ID = 17709774; // Your APP_ID
+const APP_HASH = "ecb718e2f356a062fce2bbd7af4ac76b"; // Your APP_HASH
+
+// =================== CONFIG & LOGGING ===================
+function log(message, color = "") {
+  const timestamp = new Date().toISOString().replace("T", " ~ ").split(".")[0];
+  console.log(`\x1b[90m[${timestamp}]\x1b[0m ${color}${message}\x1b[0m`);
+}
+
+function readConfig(filePath) {
+  return JSON.parse(fs.readFileSync(filePath, "utf8"));
+}
+
+// =================== FILE READING UTILS ===================
+function readLines(filePath) {
+  return fs
+    .readFileSync(filePath, "utf8")
+    .split("\n")
+    .filter((line) => line.trim() !== "");
+}
+
+// =================== REPOSITORY & TMUX SESSION MANAGEMENT ===================
+function readSessions(filePath) {
+  const sessions = [];
+  for (const line of readLines(filePath)) {
+    const parts = line.split(",").map((p) => p.trim());
+    if (parts.length === 3) {
+      sessions.push({
+        sessionName: parts[0],
+        directory: parts[1],
+        command: parts[2],
+      });
+    }
+  }
+  return sessions;
+}
+
+async function autoGitPull(sessions, updateRepos) {
+  if (!updateRepos) {
+    log("🛑 Skipping Git updates as per configuration.", "\x1b[93m");
+    return;
+  }
+  for (const { directory } of sessions) {
+    log(`📂 Updating repository in '${directory}'.`, "\x1b[94m");
+    try {
+      const { stdout, stderr } = await execPromise(
+        `git -C "${directory}" pull`
+      );
+      if (stderr && !stderr.includes("TIMEOUT")) {
+        log(
+          `❌ Failed to update repository in '${directory}': ${stderr}`,
+          "\x1b[91m"
+        );
+      } else {
+        log(
+          `✅ Repository in '${directory}' updated successfully.`,
+          "\x1b[92m"
+        );
+        log(`📤 ${stdout}`, "\x1b[94m");
+      }
+    } catch (err) {
+      if (!err.message.includes("TIMEOUT")) {
+        log(`❌ Error running git pull in '${directory}': ${err}`, "\x1b[91m");
+      }
+    }
+  }
+}
+
+async function manageSessions(sessions) {
+  for (const { sessionName, directory, command } of sessions) {
+    // Change to the specified directory.
+    try {
+      process.chdir(directory);
+    } catch (e) {
+      log(`❌ Failed to change directory to '${directory}': ${e}`, "\x1b[91m");
+      continue;
+    }
+
+    // Check if the tmux session already exists.
+    try {
+      await execPromise(`tmux has-session -t ${sessionName}`);
+      log(`🟢 Session '${sessionName}' is already running.`, "\x1b[92m");
+    } catch (err) {
+      log(`🟡 Starting session: '${sessionName}'`, "\x1b[93m");
+      // If the session doesn't exist, create a new tmux session.
+      try {
+        const { stderr } = await execPromise(
+          `tmux new-session -d -s ${sessionName} sh -c "${command}"`
+        );
+        if (stderr) {
+          log(
+            `❌ Failed to create session '${sessionName}': ${stderr}`,
+            "\x1b[91m"
+          );
+        } else {
+          log(`✅ Session '${sessionName}' created successfully.`, "\x1b[92m");
+        }
+      } catch (e) {
+        log(`❌ Failed to create session '${sessionName}': ${e}`, "\x1b[91m");
+      }
+    }
+  }
+}
+
+async function manageSessionsWin(sessions) {
+  for (const { sessionName, directory, command } of sessions) {
+    // Change to the specified directory.
+    try {
+      process.chdir(directory);
+    } catch (e) {
+      log(`❌ Failed to change directory to '${directory}': ${e}`, "\x1b[91m");
+      continue;
+    }
+
+    // Attempt to check if a CMD window with the session title is already running.
+    try {
+      const checkCmd = `tasklist /v | findstr /I "${sessionName}"`;
+      await execPromise(checkCmd);
+      log(`🟢 Session '${sessionName}' is already running.`, "\x1b[92m");
+    } catch (err) {
+      log(`🟡 Starting session: '${sessionName}'`, "\x1b[93m");
+      // Open a new CMD window with the specified session title and command.
+      // - "cmd.exe /C" executes the command and then terminates.
+      // - "start" opens a new window with the provided title (sessionName).
+      // - "cmd.exe /K" runs the command and keeps the window open.
+      try {
+        const spawnCmd = `cmd.exe /C start "${sessionName}" cmd.exe /K "${command}"`;
+        const { stderr } = await execPromise(spawnCmd);
+        if (stderr) {
+          log(
+            `❌ Failed to create session '${sessionName}': ${stderr}`,
+            "\x1b[91m"
+          );
+        } else {
+          log(`✅ Session '${sessionName}' created successfully.`, "\x1b[92m");
+        }
+      } catch (e) {
+        log(`❌ Failed to create session '${sessionName}': ${e}`, "\x1b[91m");
+      }
+    }
+  }
+}
+
+// =================== AUTO QUERY SYSTEM ===================
+// account.txt format:
+//   phone, @BotUsername|dapp_url, @BotUsername|dapp_url, ...[, raw]
+// (If "raw" is provided after the URL, then the query will be output as raw.)
+function readAccountFile(filePath) {
+  const entries = [];
+  for (const line of readLines(filePath)) {
+    const parts = line.split(",").map((p) => p.trim());
+    if (parts.length < 2) continue;
+    const phone = parts[0];
+    const queries = [];
+    for (let i = 1; i < parts.length; i++) {
+      const pipeParts = parts[i].split("|").map((p) => p.trim());
+      if (pipeParts.length >= 2) {
+        const username = pipeParts[0];
+        const dapp_url = pipeParts[1];
+        const raw =
+          pipeParts.length >= 3 && pipeParts[2].toLowerCase() === "raw";
+        queries.push({ username, dapp_url, raw });
+      }
+    }
+    entries.push({ phone, queries });
+  }
+  return entries;
+}
+
+// script_bot.txt format:
+//   @BotUsername, output_file_path
+function readScriptFile(filePath) {
+  const mapping = {};
+  for (const line of readLines(filePath)) {
+    if (line.includes(",")) {
+      const [username, location] = line.split(",", 2);
+      mapping[username.trim()] = location.trim();
+    }
+  }
+  return mapping;
+}
+
+function sanitizePhone(phone) {
+  return phone.replace(/\D/g, "");
+}
+
+// =================== USER PROMPT ===================
+function prompt(question) {
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
+  return new Promise((resolve) =>
+    rl.question(question, (ans) => {
+      rl.close();
+      resolve(ans.trim());
+    })
+  );
+}
+
+// =================== TELEGRAM SESSION MANAGEMENT ===================
+async function loginForAccount(phone) {
+  log(
+    `🔑 Session for ${phone} not found. Starting login process...`,
+    "\x1b[93m"
+  );
+  const stringSession = new StringSession("");
+  const client = new TelegramClient(stringSession, APP_ID, APP_HASH, {
+    connectionRetries: 5,
+  });
+  await client.start({
+    phoneNumber: () => phone,
+    phoneCode: () => prompt("📝 Please enter the code you received: "),
+    password: () => prompt("🔐 Please enter your password (if required): "),
+    onError: (err) => {
+      console.error(err);
+    },
+  });
+  log(
+    `✅ Signed in as ${client.session.userId}; please follow the ToS.`,
+    "\x1b[92m"
+  );
+  const sessionStr = client.session.save();
+  await client.disconnect();
+  return sessionStr;
+}
+
+async function ensureSessionForAccount(phone) {
+  const sanitized = sanitizePhone(phone);
+  const sessionDir = path.join("telegram", "sessions", sanitized);
+  const sessFile = path.join(sessionDir, "session.txt");
+  if (!fs.existsSync(sessFile)) {
+    fs.mkdirSync(sessionDir, { recursive: true });
+    const sessionStr = await loginForAccount(phone);
+    fs.writeFileSync(sessFile, sessionStr, "utf8");
+    return sessionStr;
+  } else {
+    return fs.readFileSync(sessFile, "utf8");
+  }
+}
+
+// =================== REQUEST QUERY ===================
+// Extracts the raw value from the URL fragment after "tgWebAppData=".
+// If bot.raw is false, the value is decoded so "=" appears properly.
+async function requestQueryForAccount(client, bot) {
+  try {
+    let botEntity = await client.getInputEntity(bot.username);
+    if (
+      botEntity.className === "inputPeerChannel" ||
+      botEntity.className === "InputPeerChannel"
+    ) {
+      const entity = await client.getEntity(bot.username);
+      if (entity.bot) {
+        botEntity = new Api.InputPeerUser({
+          userId: entity.id,
+          accessHash: entity.accessHash,
+        });
+      } else {
+        throw new Error("Entity is a channel and not a bot user");
+      }
+    }
+    const result = await client.invoke(
+      new Api.messages.RequestWebView({
+        peer: botEntity,
+        bot: botEntity,
+        fromBotMenu: false,
+        url: bot.dapp_url,
+        platform: "android",
+      })
+    );
+    log(
+      `📥 Response for ${bot.username}: ${JSON.stringify(result)}`,
+      "\x1b[94m"
+    );
+    if (result.url) {
+      const urlObj = new URL(result.url);
+      const fragment = urlObj.hash;
+      if (fragment) {
+        const fragContent = fragment.substring(1);
+        const prefix = "tgWebAppData=";
+        const idx = fragContent.indexOf(prefix);
+        if (idx !== -1) {
+          let valueStr = fragContent.substring(idx + prefix.length);
+          const ampIndex = valueStr.indexOf("&");
+          if (ampIndex !== -1) {
+            valueStr = valueStr.substring(0, ampIndex);
+          }
+          if (!bot.raw) {
+            return decodeURIComponent(valueStr);
+          } else {
+            return valueStr;
+          }
+        }
+      }
+    }
+    return "Query not found";
+  } catch (e) {
+    log(`❌ Request query failed for ${bot.username}: ${e}`, "\x1b[91m");
+    return "Query not found";
+  }
+}
+
+// =================== AUTO QUERY SYSTEM ===================
+// For each account, ensure a session exists, create a Telegram client,
+// perform the request query for each bot, and save the query to the output file.
+// The output file is cleared only for the first account per bot.
+async function autoQuerySystem() {
+  const accountEntries = readAccountFile("account.txt");
+  const scriptMap = readScriptFile("script_bot.txt");
+  const firstForBot = {};
+  for (const entry of accountEntries) {
+    const sessionStr = await ensureSessionForAccount(entry.phone);
+    const client = new TelegramClient(
+      new StringSession(sessionStr),
+      APP_ID,
+      APP_HASH,
+      { connectionRetries: 5 }
+    );
+    await client.connect();
+    client.on("error", (err) => {
+      if (!err.message.includes("TIMEOUT")) {
+        log(`Client error: ${err}`, "\x1b[91m");
+      }
+    });
+    for (const bot of entry.queries) {
+      const queryValue = await requestQueryForAccount(client, bot);
+      if (scriptMap[bot.username]) {
+        const queryFile = scriptMap[bot.username];
+        if (!firstForBot[bot.username]) {
+          fs.writeFileSync(queryFile, "", "utf8");
+          firstForBot[bot.username] = true;
+        }
+        fs.appendFileSync(queryFile, `${queryValue}\n`, "utf8");
+        log(`💾 Query for ${bot.username} saved to ${queryFile}`, "\x1b[92m");
+      }
+    }
+    await client.disconnect();
+  }
+}
+
+async function displayBanner() {
+  const cyan = "\x1b[36m";
+  const reset = "\x1b[0m";
+
+  try {
+    log(`${cyan}============================================${reset}`, cyan);
+    log(`${cyan}           🎉 AirfarmBot`, cyan);
+    log(`${cyan}   🚀 Created by LIVEXORDS`, cyan);
+    log(`${cyan}   📢 Channel: t.me/livexordsscript`, cyan);
+    log(`${cyan}📢 Management Bot for Script Bots`, cyan);
+    log(`${cyan}    (Prepares queries, launches bots,`, cyan);
+    log(`${cyan}     and restarts them if they crash)`, cyan);
+    log(`${cyan}============================================${reset}`, cyan);
+  } catch (e) {
+    log(`Error displaying banner: ${e}`, "\x1b[91m");
+  }
+}
+
+// =================== MAIN PROGRAM ===================
+async function main() {
+  displayBanner()
+  const config = readConfig("config_bot.json");
+
+  // Activate Termux wake lock if Termux mode is enabled.
+  if (config.divace.termux) {
+    try {
+      await execPromise("termux-wake-lock");
+      log("🔒 Termux wake lock activated.", "\x1b[92m");
+    } catch (e) {
+      log(`⚠️  Warning: termux-wake-lock failed: ${e}`, "\x1b[93m");
+    }
+  } else {
+    log("📴 Termux mode is disabled.", "\x1b[93m");
+  }
+
+  // Execute the Auto Query System if enabled.
+  if (config.auto_query) {
+    log("🚀 Running Auto Query System...", "\x1b[96m");
+    await autoQuerySystem();
+    // Ensure that all Telegram client connections are disconnected after auto query.
+    log(
+      "✅ All Telegram connections have been disconnected after auto query.",
+      "\x1b[92m"
+    );
+  }
+
+  // Read sessions and perform automatic Git pull if updates are enabled.
+  const sessions = readSessions("sessions.txt");
+  await autoGitPull(sessions, config.update_repos);
+
+  // Manage sessions based on the active platform.
+  if (config.divace.termux || config.divace.linux) {
+    log("🌐 Initiating session management for Termux/Linux mode.", "\x1b[96m");
+    while (config.auto_run) {
+      await manageSessions(sessions);
+      log(`😴 Pausing for ${config.delay_minutes} minutes...`, "\x1b[94m");
+      await new Promise((resolve) =>
+        setTimeout(resolve, config.delay_minutes * 60 * 1000)
+      );
+    }
+  } else if (config.divace.windows) {
+    log("🌐 Initiating session management for Windows mode.", "\x1b[96m");
+    while (config.auto_run) {
+      await manageSessionsWin(sessions);
+      log(`😴 Pausing for ${config.delay_minutes} minutes...`, "\x1b[94m");
+      await new Promise((resolve) =>
+        setTimeout(resolve, config.delay_minutes * 60 * 1000)
+      );
+    }
+  } else {
+    log(
+      "🛑 Session management disabled. No supported platform mode is enabled.",
+      "\x1b[93m"
+    );
+  }
+}
+
+main().catch((err) => {
+  log(`❌ ${err}`, "\x1b[91m");
+});
