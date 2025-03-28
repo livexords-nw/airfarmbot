@@ -2,73 +2,190 @@
 
 <h1 align="center">Airfarmbot</h1>
 
-<p align="center">Automate your airdrop bots with multi‑platform session management powered by tmux and CMD!</p>
+<p align="center">Automate your airdrop bots with multi‑platform session management powered by tmux and CMD! 🚀</p>
 
 ---
 
 ## 🚀 About Airfarmbot
 
-**Airfarmbot** is a tool designed to automate airdrop bots across multiple platforms including Termux, Linux, and Windows. It features built‑in session management using tmux on Termux/Linux and CMD on Windows, ensuring that your bots remain active and up‑to‑date even if sessions disconnect. This version has been updated to run on Node.js, simplifying installation and usage for JavaScript developers. The tool also boasts a user‑friendly interface with enhanced logging (using colors and emojis) and improved error handling.
+**Airfarmbot** is a tool designed to automate airdrop bots across multiple platforms including Termux, Linux, and Windows. This Node.js‑based version simplifies installation and usage for JavaScript developers while offering robust session management (using tmux on Termux/Linux and CMD on Windows). Enjoy enhanced logging with colors and emojis, improved error handling, and flexible configuration options.
 
 ---
 
-## 🌟 Version v3.0.0
+## 🌟 New Features (v4.0.0)
 
-### What's New in This Version
+- **Simplified Bot Link Configuration:**  
+  You now only need to define your bot links once in a new file called **link_bot.txt**. This file sets default dApp URLs for your bots so you don't have to repeat them in every account entry.  
+  Below is the updated "Important" note in the **account.txt** section, which now includes the additional case for bots like animix:
 
-- **Name Change:**  
-  The project name has been updated from **Airfarmbot Termux Edition** to **Airfarmbot**.
+  **Important:**  
+  If a bot in **account.txt** is listed with a link that uses only `start` (instead of `startapp`), query extraction might not work properly. In some cases, such as with **animix**, even when using `startapp`, auto query extraction does not work as expected. To ensure reliable query extraction, use the API server link instead.  
+  **For example:**  
+  - For **@animix_game_bot**, use:  
+    ```
+    @animix_game_bot|https://pro-api.animix.tech
+    ```  
+  - For **@otterlootbot**, use:  
+    ```
+    @otterlootbot|https://otter-game-service.otterloot.io
+    ```
 
-- **Multi‑Platform Support:**  
-  Airfarmbot now supports three platforms:
+    In **account.txt**, you can either specify a bot explicitly:
 
-  - **Termux**
-  - **Linux**
-  - **Windows** (session management using CMD)
+    ```bash
+    +6212345456, @RewardsHQ_bot|https://rewardshq.shards.tech/?startapp=5438209644
+    ```
 
-- **Updated Configuration:**  
-  The `config_bot.json` file now includes a `divace` object to specify the target platform. **Only one platform should be selected at a time.**
+  or simply list the phone number to have the default bots (from **link_bot.txt**) applied:
 
----
+  ```bash
+  +628987654321
+  ```
 
-## ⚙️ Key Features
+- **Enhanced Logging and Error Handling:**  
+  Enjoy clear, color‑coded logs with emojis for status updates and error messages.
 
-- **Auto‑Run with Delay:**  
-  Automatically run your bots at specified intervals to keep sessions active.
-
-- **Automatic Repository Updates:**  
-  Keeps your bot's code up‑to‑date using `git pull`.
-
-- **Detailed, User‑Friendly Logging:**  
-  Color‑coded logs with emojis provide clear and concise status updates and error messages.
-
-- **Telegram Session Management:**  
-  Automatically manages Telegram sessions for multiple accounts by storing session files locally.
-
-- **Raw Query Extraction:**  
-  Extracts query data from your bot’s dApp URL, with the option to output raw or decoded data.
-
-- **Improved Error Handling:**  
-  Suppresses unnecessary errors to maintain clean logs.
-
-- **Multi‑Platform Compatibility:**  
-  Supports Termux, Linux, and Windows for session management and bot automation.
+- **Flexible File Structure:**  
+  The project now uses:
+  - **account.txt**: List your phone numbers and, optionally, specific bot queries.
+  - **link_bot.txt**: Define default bot links (dApp URLs) that apply to all accounts.
+  - **script_bot.txt**: Map bot usernames to output files.
+  - **sessions.txt**: Configure sessions for repository updates and auto‑running your bot scripts.
 
 ---
 
-## ❗ Important Note
+## ⚙️ Configuration in `config_bot.json`
 
-For the Auto Query system to work correctly, the dApp URL **must include "startapp"** in its query string.  
-For example, the following URL will work:
+The configuration file controls key behaviors of Airfarmbot. Below is a table describing each option:
+
+| **Name**       | **Description**                                                            | **Default Value** |
+| -------------- | -------------------------------------------------------------------------- | ----------------- |
+| update_repos   | Enables automatic repository updates via `git pull`.                       | `true`            |
+| auto_run       | Enables the auto‑run feature to periodically execute bot scripts.          | `true`            |
+| delay_minutes  | Time delay (in minutes) between each auto‑run cycle.                       | `5`               |
+| auto_query     | Enables the auto query system to process dApp URLs and extract query data. | `true`            |
+| divace.termux  | Enables Termux‑specific features (session management via tmux).            | `true`            |
+| divace.linux   | Enables Linux‑specific features (session management via tmux).             | `false`           |
+| divace.windows | Enables Windows‑specific features (session management via CMD).            | `false`           |
+
+Example configuration:
+
+```json
+{
+  "update_repos": true,
+  "auto_run": true,
+  "delay_minutes": 5,
+  "auto_query": true,
+  "divace": {
+    "termux": true,
+    "linux": false,
+    "windows": false
+  }
+}
+```
+
+---
+
+## 📂 File Formats and Their Functions
+
+### 1. `account.txt` – Your Account Entries 📱
+
+Each line in **account.txt** should follow this format:
+
+```bash
+phone, @BotUsername|dapp_url, @BotUsername|dapp_url, ...
+```
+
+- **phone**: Your account's phone number.
+- **@BotUsername|dapp_url**: (Optional) Define a bot and its corresponding dApp URL.  
+  If omitted, the system will automatically apply defaults from **link_bot.txt**.
+
+**Example:**
+
+```bash
++6212345456, @RewardsHQ_bot|https://rewardshq.shards.tech/?startapp=5438209644, @OtherBot|https://otherdapp.example.com
++628987654321
+```
+
+**Important:**  
+If a bot in **account.txt** is listed with a link that uses only `start` (instead of `startapp`), query extraction might not work properly. In some cases, such as with **animix**, even when using `startapp`, auto query extraction does not work as expected. To ensure reliable query extraction, use the API server link instead.  
+**For example:**  
+- For **@animix_game_bot**, use:  
+  ```
+  @animix_game_bot|https://pro-api.animix.tech
+  ```  
+- For **@otterlootbot**, use:  
+  ```
+  @otterlootbot|https://otter-game-service.otterloot.io
+  ```
+
+---
+
+### 2. `link_bot.txt` – Default Bot Links 🔗
+
+Use **link_bot.txt** to define your default bot links. This file allows you to specify each bot’s dApp URL once, which is then applied to all accounts that do not explicitly list the bot in **account.txt**.
+
+**Format:**  
+Each entry should be in the form:
 
 ```
-https://t.me/RewardsHQ_bot/RewardsHQ?startapp=5438209644
+@BotUsername|dapp_url
 ```
 
-However, a URL like the one below (using only `start`) will **not** be processed correctly:
+You can separate entries by **newlines** or **commas**.
+
+**Examples:**
+
+_Newline-separated:_
 
 ```
-https://t.me/otterlootbot?start=ref_6778b1d10091b8b33ebec9f9
+@animix_game_bot|https://pro-api.animix.tech
+@RewardsHQ_bot|https://rewardshq.shards.tech/?startapp=5438209644
+@CryptoAirdrop_bot|https://cryptoairdrop.example.com/start?app=9876543210
+@AirdropKing_bot|https://king.airdrop.example.com/?startapp=1234567890
+```
+
+_Comma-separated:_
+
+```
+@animix_game_bot|https://pro-api.animix.tech, @RewardsHQ_bot|https://rewardshq.shards.tech/?startapp=5438209644, @CryptoAirdrop_bot|https://cryptoairdrop.example.com/start?app=9876543210, @AirdropKing_bot|https://king.airdrop.example.com/?startapp=1234567890
+```
+
+_Note:_ If an account in **account.txt** already specifies a bot (by username), then the default entry from **link_bot.txt** for that bot will be skipped.
+
+---
+
+### 3. `script_bot.txt` – Output File Mapping 📄
+
+Map each bot username to an output file where query data will be saved.
+
+**Format:**
+
+```bash
+@BotUsername,C:\Path\To\OutputFile\query.txt
+```
+
+**Example:**
+
+```bash
+@RewardsHQ_bot,C:\Users\YourName\Documents\airfarmbot\RewardsHQ\query.txt
+```
+
+---
+
+### 4. `sessions.txt` – Session Management Setup 💻
+
+Define your session configurations in **sessions.txt** with the following format:
+
+```
+session_name,directory,command
+```
+
+**Example:**
+
+```bash
+bot1,/home/user/bot1,python3 bot.py
+bot2,/home/user/bot2,python3 bot.py
 ```
 
 ---
@@ -97,7 +214,7 @@ cd airfarmbot
 
 ### 4. Install Dependencies
 
-Since this project is implemented in Node.js, install the required Node module using:
+Install the required Node module using:
 
 ```bash
 npm install telegram
@@ -115,100 +232,14 @@ node main.js
 
 ---
 
-## 🔧 Configuration in `config_bot.json`
-
-Example configuration:
-
-```json
-{
-  "update_repos": true,
-  "auto_run": true,
-  "delay_minutes": 5,
-  "auto_query": true,
-  "divace": {
-    "termux": true,
-    "linux": false,
-    "windows": false
-  }
-}
-```
-
-- **`update_repos`**: Enables automatic repository updates via `git pull`.
-- **`auto_run`**: Enables the auto‑run feature to periodically execute bot scripts.
-- **`delay_minutes`**: Time delay (in minutes) between each auto‑run cycle.
-- **`auto_query`**: Enables the auto query system to process dApp URLs and extract query data.
-- **`divace`**: Specifies the target platform.  
-  **Note:** Choose **only one** platform by setting its value to `true` while keeping the others `false`.
-
-### Configuration Table
-
-| **Name**       | **Description**                                                            | **Default Value** |
-| -------------- | -------------------------------------------------------------------------- | ----------------- |
-| update_repos   | Enables automatic repository updates via `git pull`.                       | `true`            |
-| auto_run       | Enables the auto‑run feature to periodically execute bot scripts.          | `true`            |
-| delay_minutes  | Time delay (in minutes) between each auto‑run cycle.                       | `5`               |
-| auto_query     | Enables the auto query system to process dApp URLs and extract query data. | `true`            |
-| divace.termux  | Enables Termux‑specific features (session management via tmux).            | `true`            |
-| divace.linux   | Enables Linux‑specific features (session management via tmux).             | `false`           |
-| divace.windows | Enables Windows‑specific features (session management via CMD).            | `false`           |
-
----
-
-## 📂 Format for `sessions.txt`
-
-Define bot sessions in `sessions.txt` with the following format:
-
-```
-session_name,directory,command
-```
-
-Example:
-
-```
-bot1,/home/user/bot1,python3 bot.py
-bot2,/home/user/bot2,python3 bot.py
-```
-
----
-
-## 📄 Format for `account.txt` and `script_bot.txt`
-
-- **`account.txt`**  
-  Each line should follow this format:
-
-  ```bash
-  phone, @BotUsername|dapp_url, @BotUsername|dapp_url, ...
-  ```
-
-  **Example:**
-
-  ```bash
-  +6212345456, @RewardsHQ_bot|https://rewardshq.shards.tech/?startapp=5438209644, @OtherBot|https://otherdapp.example.com
-  ```
-
-  _To output the raw query, add `|raw` after the dApp URL:_
-
-  ```bash
-  +6285847103494, @RewardsHQ_bot|https://t.me/RewardsHQ_bot/RewardsHQ?startapp=5438209644|raw
-  ```
-
-- **`script_bot.txt`**  
-  Each line maps a bot username to an output file:
-
-  ```bash
-  @BotUsername,C:\Users\YourName\Documents\airfarmbot\RewardsHQ\query.txt
-  ```
-
----
-
 ## 📄 Bot Activity Logging
 
-The logger outputs detailed messages such as:
+Airfarmbot provides detailed logging with clear status messages and emojis:
 
 - **🛑**: Skipping Git updates as per configuration.
 - **✅**: Repository updated successfully.
 - **🟢**: Session is already running.
-- **❌**: Errors with descriptive messages.
+- **❌**: Error messages with detailed information.
 - **🚀**: Starting the Auto Query System.
 - **😴**: Sleeping between auto‑run cycles.
 
@@ -223,3 +254,5 @@ This project is developed by **livexords**. For suggestions, questions, or contr
     <img src="https://img.shields.io/static/v1?message=Livexords&logo=telegram&label=&color=2CA5E0&logoColor=white&style=for-the-badge" height="25" alt="Telegram" />
   </a>
 </div>
+
+---
