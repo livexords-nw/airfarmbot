@@ -12,45 +12,14 @@
 
 ---
 
-## 🌟 New Features (v4.0.0)
+## 🌟 Update (v4.1.0)
 
-- **Simplified Bot Link Configuration:**  
-  You now only need to define your bot links once in a new file called **link_bot.txt**. This file sets default dApp URLs for your bots so you don't have to repeat them in every account entry.  
-  Below is the updated "Important" note in the **account.txt** section, which now includes the additional case for bots like animix:
+- **Updated Execution Flow:**  
+  The loop now starts from the very beginning with the Auto Query process and continues through the session management update.  
+  **Note:** The session management update is applicable only to Linux-based systems.
 
-  **Important:**  
-  If a bot in **account.txt** is listed with a link that uses only `start` (instead of `startapp`), query extraction might not work properly. In some cases, such as with **animix**, even when using `startapp`, auto query extraction does not work as expected. To ensure reliable query extraction, use the API server link instead.  
-  **For example:**  
-  - For **@animix_game_bot**, use:  
-    ```
-    @animix_game_bot|https://pro-api.animix.tech
-    ```  
-  - For **@otterlootbot**, use:  
-    ```
-    @otterlootbot|https://otter-game-service.otterloot.io
-    ```
-
-    In **account.txt**, you can either specify a bot explicitly:
-
-    ```bash
-    +6212345456, @RewardsHQ_bot|https://rewardshq.shards.tech/?startapp=5438209644
-    ```
-
-  or simply list the phone number to have the default bots (from **link_bot.txt**) applied:
-
-  ```bash
-  +628987654321
-  ```
-
-- **Enhanced Logging and Error Handling:**  
-  Enjoy clear, color‑coded logs with emojis for status updates and error messages.
-
-- **Flexible File Structure:**  
-  The project now uses:
-  - **account.txt**: List your phone numbers and, optionally, specific bot queries.
-  - **link_bot.txt**: Define default bot links (dApp URLs) that apply to all accounts.
-  - **script_bot.txt**: Map bot usernames to output files.
-  - **sessions.txt**: Configure sessions for repository updates and auto‑running your bot scripts.
+- **Extended Delay:**  
+  The default delay between cycles has been increased to **360 minutes (6 hours)**.
 
 ---
 
@@ -62,7 +31,7 @@ The configuration file controls key behaviors of Airfarmbot. Below is a table de
 | -------------- | -------------------------------------------------------------------------- | ----------------- |
 | update_repos   | Enables automatic repository updates via `git pull`.                       | `true`            |
 | auto_run       | Enables the auto‑run feature to periodically execute bot scripts.          | `true`            |
-| delay_minutes  | Time delay (in minutes) between each auto‑run cycle.                       | `5`               |
+| delay_minutes  | Time delay (in minutes) between each auto‑run cycle.                       | `360`               |
 | auto_query     | Enables the auto query system to process dApp URLs and extract query data. | `true`            |
 | divace.termux  | Enables Termux‑specific features (session management via tmux).            | `true`            |
 | divace.linux   | Enables Linux‑specific features (session management via tmux).             | `false`           |
@@ -74,7 +43,7 @@ Example configuration:
 {
   "update_repos": true,
   "auto_run": true,
-  "delay_minutes": 5,
+  "delay_minutes": 360,
   "auto_query": true,
   "divace": {
     "termux": true,

@@ -1,7 +1,7 @@
 {
     "update_repos": true,
     "auto_run": true,
-    "delay_minutes": 5,
+    "delay_minutes": 360,
     "auto_query": true,
     "divace": {
         "termux": true,
